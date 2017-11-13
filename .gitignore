@@ -1,0 +1,6 @@
+# Ignore Everything
+*
+
+# But for the following file(s)
+!.gitignore
+!machines.php
