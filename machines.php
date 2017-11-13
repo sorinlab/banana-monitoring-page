@@ -524,7 +524,7 @@ Attribute is said to have failed.
 	<div id="desktops">
             <h2> DESKTOPS </h2>
             <?php
-            for($i=1;$i<=12;$i++){
+            for($i=1;$i<=13;$i++){
              //Generate the file name
              $filename = "sorin".$i.".txt";
              //Create the div for each machine
@@ -561,13 +561,14 @@ Attribute is said to have failed.
                       if($timediff > 129600){
                         if(strpos($line,"Update Time") !==FALSE){echo "<li class=\"warning\">".$line."</li>";}
                         if(strpos($line,"Generated On") !==FALSE){echo "<li class=\"error\">".$line."</li>";}
-			//This section is used to sent out an alert if any system is unpingable.
+                        
+                        //This section is used to sent out an alert if any system is unpingable.
                         $length = strlen($filename);
                         $nameTemp = substr($filename, 0, $length - 4);
                         $pingReturn = 0;
                         $pingOutput = exec("ping $nameTemp -c 2 -W 1", $pingTemp, $pingReturn);
                         if ($pingReturn != 0) {
-//                     		echo "<script> alert('" . $nameTemp . " is Unpingable!!!'); </script>";
+                            // echo "<script> alert('" . $nameTemp . " is Unpingable!!!'); </script>";
                        		echo "<li style=\"font-size: 20pt;\" class=\"error\"> SYSTEM IS UNPINGABLE!!! </li>";
                       	}
 
@@ -610,31 +611,31 @@ Attribute is said to have failed.
                      continue;
                  }
                 if(strpos($line,"Major")!==FALSE){
-                       echo "<li><pre>".$line."</pre></li>";
-                     continue;
-                     } 
-                     if(strpos($line,"dev/sda1")!==FALSE ||
-                         strpos($line,"dev/sdb1")!==FALSE ||
-			 strpos($line,"dev/sdc1")!==FALSE ||
-			 strpos($line,"dev/sda2")!==FALSE ||
-                         strpos($line,"dev/sdb2")!==FALSE ||
-                         strpos($line,"dev/sdc2")!==FALSE ||
-			 strpos($line,"dev/sda3")!==FALSE ||
-                         strpos($line,"dev/sdb3")!==FALSE ||
-			 strpos($line,"dev/sdc3")!==FALSE ||
-			 strpos($line,"dev/sda4")!==FALSE ||
-                         strpos($line,"dev/sdb4")!==FALSE ||
-			 strpos($line,"dev/sdc4")!==FALSE ||
-			 strpos($line,"dev/sda7")!==FALSE ||
-			 strpos($line,"dev/sdb7")!==FALSE ||
-			 strpos($line,"dev/sdc7")!==FALSE){
-                         if(strpos($line,"active sync")!==false){
-                     echo "<li><pre>".$line."</pre></li>";
-                         }
-                         else{
-                          echo "<li class=\"error\"><pre>".$line."</pre></li>";
-                         }
-                     continue;
+                    echo "<li><pre>".$line."</pre></li>";
+                    continue;
+                } 
+                if( strpos($line,"dev/sda1")!==FALSE ||
+                    strpos($line,"dev/sdb1")!==FALSE ||
+                    strpos($line,"dev/sdc1")!==FALSE ||
+                    strpos($line,"dev/sda2")!==FALSE ||
+                    strpos($line,"dev/sdb2")!==FALSE ||
+                    strpos($line,"dev/sdc2")!==FALSE ||
+                    strpos($line,"dev/sda3")!==FALSE ||
+                    strpos($line,"dev/sdb3")!==FALSE ||
+                    strpos($line,"dev/sdc3")!==FALSE ||
+                    strpos($line,"dev/sda4")!==FALSE ||
+                    strpos($line,"dev/sdb4")!==FALSE ||
+                    strpos($line,"dev/sdc4")!==FALSE ||
+                    strpos($line,"dev/sda7")!==FALSE ||
+                    strpos($line,"dev/sdb7")!==FALSE ||
+                    strpos($line,"dev/sdc7")!==FALSE){
+                    if(strpos($line,"active sync")!==false){
+                        echo "<li><pre>".$line."</pre></li>";
+                    }
+                    else{
+                        echo "<li class=\"error\"><pre>".$line."</pre></li>";
+                    }
+                    continue;
                 }
                 //This if execlusively for the output of sorin2.txt
                 if(strpos($line,"dev/sd")!==FALSE){
@@ -659,7 +660,7 @@ Attribute is said to have failed.
             //Execute the loop twice since we have 2 disks on each of the sorinx machines
             for($j=1;$j<=3;$j++){
                 $shortOffline=0; $extendedOffline=0; $avgCount=0; 
-$totalLifeTime=0;$errorsLogged=true;$errorCount=0;$smartSupport=true;
+                $totalLifeTime=0;$errorsLogged=true;$errorCount=0;$smartSupport=true;
                 if($j==1){
                 $filename = "smartctl/sorin".$i."-sda.txt";
                 echo "<h4 class=\"handle\" name=".$filename." > Hard Drive #1 [/dev/sda] </h4>";
@@ -675,11 +676,11 @@ $totalLifeTime=0;$errorsLogged=true;$errorCount=0;$smartSupport=true;
                 // echo "</br><h4 class=\"handle\" name=".$filename.">Hard Drive #3 [/dev/sdc] </h4>";	
 		//}
 
-		//This special case is for sorin12 (Dennis as of 11/13/16) -> 3HDD
-		if($j==3 and $i==12){
-		 $filename = "smartctl/sorin".$i."-sdc.txt";
-                 echo "</br><h4 class=\"handle\" name=".$filename.">Hard Drive #3 [/dev/sdc] </h4>";
-		}
+                //This special case is for sorin12 (Dennis as of 11/13/16) -> 3HDD
+                if($j==3 and $i==12){
+                    $filename = "smartctl/sorin".$i."-sdc.txt";
+                    echo "</br><h4 class=\"handle\" name=".$filename.">Hard Drive #3 [/dev/sdc] </h4>";
+                }
 		//End of Special Case section
 	
 	//$j is less than or equal to 2 because most of the sorinX machines have 2 drives.Sorin11 and 12 have 3
