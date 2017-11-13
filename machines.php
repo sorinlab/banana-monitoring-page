@@ -653,8 +653,8 @@ Attribute is said to have failed.
             else{
               echo "<li class=\"error\"> File Not Found </li>";
             }
-            //Ignore smartctl output for sorin13
-            if($i!=13){
+            //Ignore smartctl output for sorin14
+            if($i!=14){
             echo "<br/>";
             //Parse the smartctl output for eachmachine and then print relevant details
             //Execute the loop twice since we have 2 disks on each of the sorinx machines
