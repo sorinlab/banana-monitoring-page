@@ -120,7 +120,7 @@
                     <li><a href="http://folding.cnsm.csulb.edu/wiki">Wiki</a></li>
                     <li><a href="http://folding.cnsm.csulb.edu/wiki/index.php/Machine_Monitoring_Page">Monitor-Info</a></li>
                 </ul>
-            </div> //End of div header
+            </div> <!-- End of div header -->
             <!-- Critical elements alert -->
             <span id="criticalMessage" style="display:none;"> 
             </span>
