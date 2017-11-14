@@ -555,7 +555,7 @@
                 }//End of Loop
                 //Starting Loop for displaying all of the machines onto the machine monitoring page in banana************
                 ?>
-            </div> //End of div for Server
+            </div> <!-- End of div for Server -->
             <div id="desktops">
                 <h2> DESKTOPS </h2>
                 <?php
@@ -1038,7 +1038,7 @@
                         echo "</div>"; // End of Div
                     } // End of for-loop ($i=1;$i<=13;$i++)
                 ?>
-            </div> //End of div for Desktops
+            </div> <!-- End of div for Desktops -->
             <!-- Overlay Div -->
             <div id="dialog_overlay" style="display:none"> 
             </div>
