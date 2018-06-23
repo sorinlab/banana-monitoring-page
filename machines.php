@@ -5,7 +5,6 @@
  * PHP file that dynamically collects & process the RAID array status &
  * smartctl output of all servers & desktops.
  * EDITED ON: 10/24/16 BY XAVIER MARTINEZ (Added recognition of entropy1's Virtual Disk)
- * Testing
  */
 
 /* Please don't edit this file through "nano" or "vim" due to format error.
@@ -168,7 +167,7 @@
                     if (strpos($name,"entropy1.") !== FALSE) 
                     {
                         echo "<h3 class=\"machineName\">entropy1 Data RAID</h3>";
-                        $smartfile1 = "smartctl/entropy1-sdh.txt"; $smartdisk1 = "/dev/sdh";
+                        $smartfile1 = "smartctl/entropy1-sde.txt"; $smartdisk1 = "/dev/sde";
                         $smartfile2 = "smartctl/entropy1-sdf.txt"; $smartdisk2 = "/dev/sdf";
                         $smartEnabledDisks = 2;
                         $MNAME = "entropy1";
@@ -276,9 +275,7 @@
                                         $pingOutput = exec("ping $nameTemp -c 1 -W 1", $pingTemp, $pingReturn);
                                         if ($pingReturn != 0) 
                                         {
-                                            //echo "<script> alert('" . $nameTemp . " is Unpingable!!!'); </script>";
                                             echo "<li style=\"font-size: 20pt;\" class=\"error\"> SYSTEM IS UNPINGABLE!!! </li>";
-
                                         }
                                     } 
                                     else 
@@ -287,9 +284,7 @@
                                         $pingOutput = exec("ping $MNAME -c 1 -W 1", $pingTemp, $pingReturn);
                                         if ($pingReturn != 0) 
                                         {
-                                            //echo "<script> alert('" . $nameTemp . " is Unpingable!!!'); </scri$
                                             echo "<li style=\"font-size: 20pt;\" class=\"error\"> SYSTEM IS UNPINGABLE!!! </li>";
-
                                         }
                                     }
                                 } 
@@ -417,7 +412,8 @@
                                         break;
                                     }
                                 }
-                                if (strpos($line,"No Errors Logged")!==FALSE) 
+                                // Added "Errors Corrected" in the case that there is no errors logged
+                                if (strpos($line,"No Errors Logged")!==FALSE || strpos($line, "Errors Corrected")!==FALSE) 
                                 {
                                     $errorsLogged=false;
                                 }
@@ -449,9 +445,10 @@
                                     }
                                     continue;
                                 }
-                                if(strpos($line,"overall-health")!==FALSE )
+                                // Added the "Health Status" & "OK" in the if statement for entropy1's sde SMARTCTL
+                                if(strpos($line,"overall-health")!==FALSE || strpos($line, "Health Status:")!==FALSE)
                                 {
-                                    if(strpos($line,"PASSED"))
+                                    if(strpos($line,"PASSED") || strpos($line, "OK"))
                                     {
                                         echo "<li class=\"active\">".$line."</li>";
                                     }
