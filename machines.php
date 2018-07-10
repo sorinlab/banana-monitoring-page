@@ -1036,7 +1036,8 @@
                         
                         $uptimeFilename = "sorin".$i."_uptime.txt";
                         if(file_exists($uptimeFilename))
-                        {
+                        {   
+                            echo "<br>";
                             echo "<h4>Uptime</h4>";
 
                             $fileContents=file_get_contents($uptimeFilename);
