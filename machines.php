@@ -571,6 +571,8 @@
                         //If desktop is current down trigger echo & continue
                         if (in_array($i, $offline_desktops)) {
                             echo "HOSTNAME NOT CURRENTLY IN USE";
+                            echo "</ul>"; //End of..
+                            echo "</div>"; // End of Div
                             continue;
                         }
                         
