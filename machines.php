@@ -1034,6 +1034,7 @@
                             } //End of if($j==3 && $i==12)
                         } //End of for($j=1;$j<=3;$j++), for 2 disks on each sorinX machines 
                         
+                        #grabbing the uptime of each desktop
                         $uptimeFilename = "sorin".$i.".cnsm.csulb.edu_uptime.txt";
                         if(file_exists($uptimeFilename))
                         {   
