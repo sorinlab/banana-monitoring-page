@@ -567,11 +567,14 @@
                         echo "<div class=\"machine\">";
                         echo "<h3 class=\"machineName\">"."sorin".$i."</h3>";
                         echo "<ul class=\"machineInfo\">";
-                        //Check if the file exists
-                        if (in_array($i, offline_desktops)) {
+                        
+                        //If desktop is current down trigger echo & continue
+                        if (in_array($i, $offline_desktops)) {
                             echo "HOSTNAME NOT CURRENTLY IN USE";
                             continue;
                         }
+                        
+                        //Check if the file exists
                         if(file_exists($filename))
                         {
                             $fh=file($filename,FILE_IGNORE_NEW_LINES|FILE_SKIP_EMPTY_LINES);
