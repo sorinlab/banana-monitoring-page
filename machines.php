@@ -9,6 +9,7 @@
 
 /* Please don't edit this file through "nano" or "vim" due to format error.
  *      Instead use VS code or other code editor for format consistency.
+ * TESTING
  */
 ?>
 
@@ -1032,6 +1033,18 @@
                                 }
                             } //End of if($j==3 && $i==12)
                         } //End of for($j=1;$j<=3;$j++), for 2 disks on each sorinX machines 
+                        
+                        #grabbing the uptime of each desktop
+                        $uptimeFilename = "sorin".$i.".cnsm.csulb.edu_uptime.txt";
+                        if(file_exists($uptimeFilename))
+                        {   
+                            echo "<br>";
+                            echo "<h4>Uptime</h4>";
+
+                            $fileContents=file_get_contents($uptimeFilename);
+                            echo "<li>".$fileContents."</li>";
+                        }
+
                         echo "</ul>"; //End of machine info
                         echo "</div>"; // End of Div
                     } // End of for-loop ($i=1;$i<=13;$i++)
