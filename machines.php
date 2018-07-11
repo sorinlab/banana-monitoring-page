@@ -558,6 +558,7 @@
             <div id="desktops">
                 <h2> DESKTOPS </h2>
                 <?php
+                    $offline_desktops = array(2,5);
                     for($i=1;$i<=13;$i++)
                     {
                         //Generate the file name
@@ -567,6 +568,10 @@
                         echo "<h3 class=\"machineName\">"."sorin".$i."</h3>";
                         echo "<ul class=\"machineInfo\">";
                         //Check if the file exists
+                        if (in_array($i, offline_desktops)) {
+                            echo "HOSTNAME NOT CURRENTLY IN USE";
+                            continue;
+                        }
                         if(file_exists($filename))
                         {
                             $fh=file($filename,FILE_IGNORE_NEW_LINES|FILE_SKIP_EMPTY_LINES);
