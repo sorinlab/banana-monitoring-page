@@ -747,11 +747,19 @@
                             }
                             if($j==2)
                             {
-                                $filename = "smartctl/sorin".$i."-sdb.txt";
+                                # This if was implemented for sorin9's special sdc drive as a second hdd rather than sdb as a second hdd
+                                if($i==9)
+                                {
+                                    $filename = "smartctl/sorin".$i."-sdc.txt";
+                                }
+                                else
+                                {
+                                    $filename = "smartctl/sorin".$i."-sdb.txt";
+                                }
                                 echo "</br><h4 class=\"handle\" name=".$filename.">Hard Drive #2 [/dev/sdb] </h4>";
                             }
                             //This special case is for sorin12 (Dennis as of 11/13/16) -> 3HDD
-                            if($j==3 and ($i==12 or $i==9))
+                            if($j==3 and ($i==12)
                             {
                                 $filename = "smartctl/sorin".$i."-sdc.txt";
                                 echo "</br><h4 class=\"handle\" name=".$filename.">Hard Drive #3 [/dev/sdc] </h4>";
@@ -901,7 +909,7 @@
                                 }    
                             } //End of the if($j<=2)
                             //This case statement is used to display sorin12 SMARTctl sdc drive.Modify it if more machines have 3 drives
-                            if($j==3 && ($i==12 || $i==9))
+                            if($j==3 && $i==12)
                             {
                                 //Check if the file exists
                                 if(file_exists($filename))
