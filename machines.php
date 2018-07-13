@@ -558,7 +558,9 @@
             <div id="desktops">
                 <h2> DESKTOPS </h2>
                 <?php
+                    
                     $offline_desktops = array(2,5);
+                    
                     for($i=1;$i<=13;$i++)
                     {
                         //Generate the file name
@@ -1045,7 +1047,7 @@
                         } //End of for($j=1;$j<=3;$j++), for 2 disks on each sorinX machines 
                         
                         #grabbing the uptime of each desktop
-                        $uptimeFilename = "sorin".$i.".cnsm.csulb.edu_uptime.txt";
+                        $uptimeFilename = "sorin".$i."_uptime.txt";
                         if(file_exists($uptimeFilename))
                         {   
                             echo "<br>";
