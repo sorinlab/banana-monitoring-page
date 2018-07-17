@@ -919,7 +919,7 @@
                                 }    
                             } //End of the if($j<=2)
                             //This case statement is used to display sorin12 SMARTctl sdc drive.Modify it if more machines have 3 drives
-                            if($j==3 && $i==12)
+                            if($j==3 && ($i==12 || $i==9))
                             {
                                 //Check if the file exists
                                 if(file_exists($filename))
