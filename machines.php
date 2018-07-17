@@ -768,8 +768,11 @@
                                     $filename = "smartctl/sorin".$i."-sdb.txt";
                                     echo "</br><h4 class=\"handle\" name=".$filename.">Hard Drive #2 [/dev/sdb] </h4>";
                                 }
-                                $filename = "smartctl/sorin".$i."-sdc.txt";
-                                echo "</br><h4 class=\"handle\" name=".$filename.">Hard Drive #3 [/dev/sdc] </h4>";
+                                else
+                                {
+                                    $filename = "smartctl/sorin".$i."-sdc.txt";
+                                    echo "</br><h4 class=\"handle\" name=".$filename.">Hard Drive #3 [/dev/sdc] </h4>";
+                                }
                             } //End of Special Case section (j==3 and i==12)
                             //$j is less than or equal to 2 because most of the sorinX machines have 2 drives.Sorin11 and 12 have 3
                             if($j<=2)
