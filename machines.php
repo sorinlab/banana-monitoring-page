@@ -762,6 +762,12 @@
                             //This special case is for sorin12 (Dennis as of 11/13/16) -> 3HDD
                             if($j==3 and ($i==12 || $i==9))
                             {
+                                // Sorin9's third drive is called sdb
+                                if($i==9)
+                                {
+                                    $filename = "smartctl/sorin".$i."-sdb.txt";
+                                    echo "</br><h4 class=\"handle\" name=".$filename.">Hard Drive #2 [/dev/sdb] </h4>";
+                                }
                                 $filename = "smartctl/sorin".$i."-sdc.txt";
                                 echo "</br><h4 class=\"handle\" name=".$filename.">Hard Drive #3 [/dev/sdc] </h4>";
                             } //End of Special Case section (j==3 and i==12)
