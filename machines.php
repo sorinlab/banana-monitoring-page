@@ -760,7 +760,7 @@
                                 }
                             }
                             //This special case is for sorin12 (Dennis as of 11/13/16) -> 3HDD
-                            if($j==3 and $i==12)
+                            if($j==3 and ($i==12 || $i==9))
                             {
                                 $filename = "smartctl/sorin".$i."-sdc.txt";
                                 echo "</br><h4 class=\"handle\" name=".$filename.">Hard Drive #3 [/dev/sdc] </h4>";
