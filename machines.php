@@ -766,7 +766,7 @@
                                 if($i==9)
                                 {
                                     $filename = "smartctl/sorin".$i."-sdb.txt";
-                                    echo "</br><h4 class=\"handle\" name=".$filename.">Hard Drive #2 [/dev/sdb] </h4>";
+                                    echo "</br><h4 class=\"handle\" name=".$filename.">Hard Drive #3 [/dev/sdb] </h4>";
                                 }
                                 else
                                 {
