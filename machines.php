@@ -1067,21 +1067,12 @@
                         #grabbing the uptime of each desktop
                         $uptimeFilename = "sorin".$i."_uptime.txt";
                         if(file_exists($uptimeFilename))
-                        {   
-                            $fh=file($uptimeFilename,FILE_IGNORE_NEW_LINES|FILE_SKIP_EMPTY_LINES);
-                                    //Process each line in the file
-                                    foreach ($fh as $line)
-                                    {
-                                        if(strpos($line,"/dev/md2")!== FALSE)
-                                        {
-                                            echo "<li>".$line."</li>";
-                                        }
-                                    }
-                            #echo "<br>";
-                            #echo "<h4>UptimeTest</h4>";
+                        {    
+                            echo "<br>";
+                            echo "<h4>UptimeTest</h4>";
 
-                            #$fileContents=file_get_contents($uptimeFilename);
-                            #echo "<li>".$fileContents."</li>";
+                            $fileContents=file_get_contents($uptimeFilename);
+                            echo "<li>".$fileContents."</li>";
                         }
 
                         echo "</ul>"; //End of machine info
