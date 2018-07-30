@@ -1070,7 +1070,7 @@
                         {   
                             $fh=file($uptimeFilename,FILE_IGNORE_NEW_LINES|FILE_SKIP_EMPTY_LINES);
                                     //Process each line in the file
-                                    foreach ($uptimeFileName as $line)
+                                    foreach ($fh as $line)
                                     {
                                         if(strpos($line,"/dev/md2")!== FALSE)
                                         {
