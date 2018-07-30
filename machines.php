@@ -570,7 +570,7 @@
                         echo "<h3 class=\"machineName\">"."sorin".$i."</h3>";
                         echo "<ul class=\"machineInfo\">";
                         
-                        //If desktop is current down trigger echo & continue
+                        //If desktop is currently down trigger echo & continue
                         if (in_array($i, $offline_desktops)) {
                             echo "HOSTNAME NOT CURRENTLY IN USE";
                             echo "</ul>"; //End of..
@@ -1046,8 +1046,8 @@
                             } //End of if($j==3 && $i==12)
                         } //End of for($j=1;$j<=3;$j++), for 2 disks on each sorinX machines 
                         
-                        #grabbing the uptime of each desktop
-                        $uptimeFilename = "sorin".$i."_uptime.txt";
+                        #grabbing the uptime of each desktop used to be uptime.txt
+                        $uptimeFilename = "sorin".$i."_information.txt";
                         if(file_exists($uptimeFilename))
                         {   
                             echo "<br>";
