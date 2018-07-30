@@ -1072,8 +1072,10 @@
                                     //Process each line in the file
                                     foreach ($fh as $line)
                                     {
-                                        if(strpos($line,"/dev/md2")!== FALSE)
+                                        if(strpos($line,"/dev/md")!== FALSE && strpos($line,"up")!==FALSE)
                                         {
+                                            echo "<br>"
+                                            echo "<h4> Space Used"
                                             echo "<li>".$line."</li>";
                                         }
                                     }
