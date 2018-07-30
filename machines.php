@@ -1069,7 +1069,7 @@
                         if(file_exists($uptimeFilename))
                         {   
                             echo "<br>";
-                            echo "<h4>Uptime</h4>";
+                            echo "<h4>Uptime-Test</h4>";
 
                             $fileContents=file_get_contents($uptimeFilename);
                             echo "<li>".$fileContents."</li>";
