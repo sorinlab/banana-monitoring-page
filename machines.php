@@ -1065,7 +1065,7 @@
                         } //End of for($j=1;$j<=3;$j++), for 2 disks on each sorinX machines 
                         
                         #grabbing the uptime of each desktop used to be uptime.txt
-                        $uptimeFilename = "sorin".$i."_information.txt";
+                        $uptimeFilename = "sorin".$i."_uptime.txt";
                         if(file_exists($uptimeFilename))
                         {   
                             echo "<br>";
