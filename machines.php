@@ -1068,11 +1068,22 @@
                         $uptimeFilename = "sorin".$i."_uptime.txt";
                         if(file_exists($uptimeFilename))
                         {   
-                            echo "<br>";
-                            echo "<h4>Uptime</h4>";
+                            $fh=file($uptimeFilename,FILE_IGNORE_NEW_LINES|FILE_SKIP_EMPTY_LINES);
+                                //Process each line in the file
+                                foreach($fh as $line)
+                                {
+                                    if(strpos($line,"/dev/md")!==FALSE)
+                                    {
+                                        echo "<br>"
+                                        echo "<h4>Space Used</h4>"
+                                        echo "<li>".$line."</li>";
+                                    }
+                                }
+                            #echo "<br>";
+                            #echo "<h4>Uptime</h4>";
 
-                            $fileContents=file_get_contents($uptimeFilename);
-                            echo "<li>".$fileContents."</li>";
+                            #$fileContents=file_get_contents($uptimeFilename);
+                            #echo "<li>".$fileContents."</li>";
                         }
 
                         echo "</ul>"; //End of machine info
