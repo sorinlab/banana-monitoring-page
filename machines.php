@@ -1080,8 +1080,7 @@
                                         echo "<li>".$line."</li>"
                                     }
                             
-                            echo "<br>";
-                            echo "<h4>Space Used</h4>";
+                                    
 
                                         if(strpos($line,"Filesystem")!==FALSE || strpos($line,'/dev/md')!==FALSE)
                                         {
