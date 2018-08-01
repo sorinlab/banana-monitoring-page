@@ -1082,11 +1082,7 @@
                                         echo "<li><pre>".$line."</pre></li>";
                                         
                                     }
-                                    break;
 
-                                    echo "<br>";
-                                    echo"<h4>Uptime</h4>";
-                                    
                                     if(strpos($line,"up")!==FALSE)
                                     {
                                         echo "<li>".$line."</li>";
@@ -1095,6 +1091,8 @@
 
                                 }
                             
+                            echo "<br>";
+                            echo "<h4>Uptime</h4>";
 
                             #$fileContents=file_get_contents($uptimeFilename);
 
