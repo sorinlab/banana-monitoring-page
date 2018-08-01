@@ -1078,11 +1078,8 @@
                                     if(strpos($line,'up')!==FALSE)
                                     {
                                         echo "<li>".$line."</li>"
-                                        continue;
                                     }
-                            
-                            echo "<br>";
-                            echo "<h4>Space Used</h4>";
+                                    continue;
 
                                     if(strpos($line,"Filesystem")!==FALSE || strpos($line,'/dev/md')!==FALSE)
                                     {
