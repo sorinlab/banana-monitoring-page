@@ -1087,7 +1087,7 @@
 
                                     if(strpos($line,"minute")!==FALSE || strpos($line,"hour")!==FALSE)
                                     {
-                                        echo "<br><h4> Uptime:</h4><br><font color='green'>".$line."</font>";
+                                        echo "<br><h4> Uptime:</h4><font color='green'>".$line."</font>";
                                     }
 
 
