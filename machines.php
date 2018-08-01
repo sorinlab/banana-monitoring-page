@@ -1074,8 +1074,8 @@
                                 {
                                     if(strpos($line,"Filesystem")!==FALSE)
                                     {
-                                        echo "<br>"
-                                        echo "<h4>Space Used</h4>"
+                                        #echo "<br>"
+                                        #echo "<h4>Space Used</h4>"
                                         echo "<li>".$line."</li>";
                                     }
                                     
