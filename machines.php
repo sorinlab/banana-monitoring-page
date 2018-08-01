@@ -1079,12 +1079,12 @@
                                         echo "<li>".$line."</li>";
                                     }
                                     
-                                    if(strpos($line,"/dev/md2")!==FALSE)
-                                    {
-                                        #echo "<br>"
-                                        #echo "<h4>Space Used</h4>"
-                                        echo "<li>".$line."</li>";
-                                    }
+                                        if(strpos($line,"/dev/md2")!==FALSE)
+                                        {
+                                            #echo "<br>"
+                                            #echo "<h4>Space Used</h4>"
+                                            echo "<li>".$line."</li>";
+                                        }
                                 }
                             #echo "<br>";
                             #echo "<h4>Uptime</h4>";
