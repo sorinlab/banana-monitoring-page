@@ -1069,7 +1069,9 @@
                         if(file_exists($uptimeFilename))
                         {   
                             echo "<br>";
-                            echo "<h4>Uptime</h4>";
+                            echo "<h4>Uptime & Space Used</h4>";
+
+                            
 
                             $fh=file($uptimeFilename,FILE_IGNORE_NEW_LINES|FILE_SKIP_EMPTY_LINES);
                                 //Process each line in the file
@@ -1082,8 +1084,7 @@
                                         echo "<li><pre>".$line."</pre></li>";
 
                                     }
-                                    echo "<br>";
-                                    echo "<h4>Space Used</h4>";
+
                                     if(strpos($line,"up")!==FALSE)
                                     {
                                         echo "<li>".$line."</li>";
