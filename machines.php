@@ -1087,7 +1087,7 @@
 
                                     if(strpos($line,"minute")!==FALSE || strpos($line,"hour")!==FALSE)
                                     {
-                                        echo '<font color="green">'.$line.'</front><br>';
+                                        echo "<font color='green'>".$line."</front><br>";
                                     }
 
 
