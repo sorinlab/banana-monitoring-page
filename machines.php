@@ -1064,12 +1064,12 @@
                             } //End of if($j==3 && $i==12)
                         } //End of for($j=1;$j<=3;$j++), for 2 disks on each sorinX machines 
                         
-                        #grabbing the uptime of each desktop
+                        #Grabbing the uptime & df -h of each desktop
                         $uptimeFilename = "sorin".$i."_uptime.txt";
                         if(file_exists($uptimeFilename))
                         {   
                             echo "<br>";
-                            echo "<h4>Uptime & Space Used</h4>";
+                            echo "<h4>Space Used</h4>";
 
                             
 
@@ -1087,7 +1087,7 @@
 
                                     if(strpos($line,"minute")!==FALSE || strpos($line,"hour")!==FALSE)
                                     {
-                                        echo "<li>".$line."</li>";
+                                        echo '<font color="green">'.$line.'</front><br>';
                                     }
 
 
