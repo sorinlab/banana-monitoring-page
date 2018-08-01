@@ -1078,6 +1078,7 @@
                                     if(strpos($line,'up')!==FALSE)
                                     {
                                         echo "<li>".$line."</li>"
+                                        continue;
                                     }
                             
                             echo "<br>";
