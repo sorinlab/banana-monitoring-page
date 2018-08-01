@@ -1075,11 +1075,11 @@
                                 //Process each line in the file
                                 foreach($fh as $line)
                                 {
-                                    if(strpos($line,'up')!==FALSE)
-                                    {
-                                        echo "<li>".$line."</li>"
-                                    }
-                                    continue;
+                                   # if(strpos($line,'up')!==FALSE)
+                                    #{
+                                     #   echo "<li>".$line."</li>"
+                                    #}
+                                    #continue;
 
                                     if(strpos($line,"Filesystem")!==FALSE || strpos($line,'/dev/md')!==FALSE)
                                     {
