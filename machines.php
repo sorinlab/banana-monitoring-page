@@ -1087,7 +1087,7 @@
 
                                     if(strpos($line,"minute")!==FALSE || strpos($line,"hour")!==FALSE)
                                     {
-                                        echo "<br><B> UPTIME: ".$line."</b><br>";
+                                        echo "<br><B> UPTIME: \n".$line."</b><br>";
                                     }
 
 
