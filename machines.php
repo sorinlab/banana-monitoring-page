@@ -1088,8 +1088,6 @@
                             echo "<br>";
                             echo "<h4>Uptime</h4>";
 
-                            $fh=file($uptimeFilename,FILE_IGNORE_NEW_LINES|FILE_SKIP_EMPTY_LINES);
-                                //Process each line in the file
                                 foreach($fh as $line) 
                                 {
                                     if(strpos($line,'up')!==FALSE)
