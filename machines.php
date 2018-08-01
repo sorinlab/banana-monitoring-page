@@ -1087,7 +1087,7 @@
 
                                     if(strpos($line,"minute")!==FALSE || strpos($line,"hour")!==FALSE)
                                     {
-                                        echo "<br><UPTIME: font color='green'>".$line."</font><br>";
+                                        echo "<br><font color='green' UPTIME: >".$line."</font><br>";
                                     }
 
 
