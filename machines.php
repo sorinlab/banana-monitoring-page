@@ -1080,6 +1080,12 @@
                                     {
 
                                         echo "<li><pre>".$line."</pre></li>";
+                                        break;
+                                    }
+
+                                    if(strpos($line,"up")!==FALSE)
+                                    {
+                                        echo "<li>".$line."</li>";
                                     }
 
 
