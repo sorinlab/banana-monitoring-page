@@ -1072,19 +1072,14 @@
                                 //Process each line in the file
                                 foreach($fh as $line)
                                 {
-                                    if(strpos($line,"Filesystem")!==FALSE)
+                                    if(strpos($line,"Filesystem")!==FALSE || strpos($line,"/dev/md2")!==FALSE || strpos($line,"/dev/md3/")!==FALSE)
                                     {
                                         #echo "<br>"
                                         #echo "<h4>Space Used</h4>"
                                         echo "<li>".$line."</li>";
                                     }
                                     
-                                        if(strpos($line,"/dev/md2")!==FALSE)
-                                        {
-                                            #echo "<br>"
-                                            #echo "<h4>Space Used</h4>"
-                                            echo "<li>".$line."</li>";
-                                        }
+                                        
                                 }
                             #echo "<br>";
                             #echo "<h4>Uptime</h4>";
