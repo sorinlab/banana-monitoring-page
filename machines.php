@@ -1077,17 +1077,12 @@
                                 {
                                     if(strpos($line,'up')!==FALSE)
                                     {
-                                        echo "<li>".$line."</li>"
-                                    }
-                            
-                                    
-
                                         if(strpos($line,"Filesystem")!==FALSE || strpos($line,'/dev/md')!==FALSE)
                                         {
 
                                             echo "<li><pre>".$line."</pre></li>";
                                         }
-
+                                    }
 
        
                                 }
