@@ -1075,16 +1075,16 @@
                                 //Process each line in the file
                                 foreach($fh as $line)
                                 {
-                                    if(strpos($line,"Filesystem")!==FALSE || strpos($line,"/dev/md2")!==FALSE)
+                                    if(strpos($line,"Filesystem")!==FALSE || strpos($line,"/dev/md3")!==FALSE)
                                     {
 
                                         echo "<li>".$line."</li>";
                                     }
 
-                                        if(strpos($line,"/dev/md3/")!==FALSE)
-                                        {
-                                            echo "<li>".line."</li>";
-                                        }
+                                       # if(strpos($line,"/dev/md3/")!==FALSE)
+                                        #{
+                                         #   echo "<li>".line."</li>";
+                                        #}
        
                                 }
                             #echo "<br>";
