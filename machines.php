@@ -1088,13 +1088,6 @@
                             echo "<br>";
                             echo "<h4>Uptime</h4>";
 
-                                foreach($fh as $line) 
-                                {
-                                    if(strpos($line,'up')!==FALSE)
-                                    {
-                                        echo "<li>".$line."</li>"
-                                    }
-                                }
                             #$fileContents=file_get_contents($uptimeFilename);
 
                             #echo "<li>".$fileContents."</li>";
