@@ -1068,18 +1068,24 @@
                         $uptimeFilename = "sorin".$i."_uptime.txt";
                         if(file_exists($uptimeFilename))
                         {   
+                            echo "<br";
+                            echo "<h4>Space Used</h4>";
+
                             $fh=file($uptimeFilename,FILE_IGNORE_NEW_LINES|FILE_SKIP_EMPTY_LINES);
                                 //Process each line in the file
                                 foreach($fh as $line)
                                 {
-                                    if(strpos($line,"Filesystem")!==FALSE || strpos($line,"/dev/md2")!==FALSE || strpos($line,"/dev/md3/")!==FALSE)
+                                    if(strpos($line,"Filesystem")!==FALSE || strpos($line,"/dev/md2")!==FALSE)
                                     {
-                                        #echo "<br>"
-                                        #echo "<h4>Space Used</h4>"
+
                                         echo "<li>".$line."</li>";
                                     }
-                                    
-                                        
+
+                                        if(strpos($line,"/dev/md3/")!==FALSE)
+                                        {
+                                            echo "<li>".line."</li>";
+                                        }
+       
                                 }
                             #echo "<br>";
                             #echo "<h4>Uptime</h4>";
