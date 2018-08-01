@@ -1085,7 +1085,7 @@
 
                                     }
 
-                                    if(strpos($line,"up")!==FALSE)
+                                    if(strpos($line,"minute")!==FALSE)
                                     {
                                         echo "<li>".$line."</li>";
                                     }
