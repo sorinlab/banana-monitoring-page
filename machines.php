@@ -1075,7 +1075,7 @@
                                 //Process each line in the file
                                 foreach($fh as $line)
                                 {
-                                    if(strpos($line,"up")!==FALSE || strpos($line,"Filesystem")!==FALSE || strpos($line,"/dev/md2")!==FALSE || strpos($line,"/dev/md3")!==FALSE)
+                                    if(strpos($line,"up")!==FALSE || strpos($line,"Filesystem")!==FALSE || strpos($line,'/dev/md')!==FALSE)
                                     {
 
                                         echo "<li><pre>".$line."</pre></li>";
