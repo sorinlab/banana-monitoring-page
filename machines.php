@@ -1087,7 +1087,7 @@
 
                                     if(strpos($line,"up ")!==FALSE)
                                     {
-                                        echo "<br><h4> Uptime:</h4><font color='green'>".$line."</font>";
+                                        echo "<br><h4> Uptime:</h4><li class='active'>".$line."</li>";
                                     }
 
 
