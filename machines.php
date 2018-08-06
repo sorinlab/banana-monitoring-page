@@ -567,7 +567,7 @@
                         $filename = "sorin".$i.".txt";
                         //Create the div for each machine
                         echo "<div class=\"machine\">";
-                        #echo "<h3 class=\"machineName\">"."sorin".$i."</h3>";
+                        echo "<h3 class=\"machineName\">"."sorin".$i."</h3>";
                         echo "<ul class=\"machineInfo\">";
                         
                         //If desktop is currently down trigger echo & continue
