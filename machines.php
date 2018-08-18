@@ -539,7 +539,7 @@
                         echo "</ul>"; //End of machine Info
                     }//End of If smartEnabledDisks
                     
-                    echo "<div>";
+                    echo "<div align='center'>";
                     #Grabbing the essential information of each server
                     if($informationSwitch == 1)
                     {
