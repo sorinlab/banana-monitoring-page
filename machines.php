@@ -361,36 +361,6 @@
                                 }
                             }
                         } // End of file processing
-
-                        #Grabbing the essential information of each server
-                        if($informationSwitch == 1)
-                        {
-                            $informationFilename = $MNAME."_information.txt";
-                            if(file_exists($informationFilename))
-                            {   
-                                echo "<br>";
-                                echo "<h4>Space Used</h4>";
-
-                                $fh=file($informationFilename,FILE_IGNORE_NEW_LINES|FILE_SKIP_EMPTY_LINES);
-                                //Process each line in the file
-                                foreach($fh as $line)
-                                {
-
-                                    if(strpos($line,"Filesystem")!==FALSE || strpos($line,'/dev/md')!==FALSE)
-                                    {
-                                        
-                                        echo "<li><pre>".$line."</pre></li>";
-
-                                    }
-
-                                    if(strpos($line,"up ")!==FALSE)
-                                    {
-                                        echo "<br><h4> Uptime:</h4><li class='active'>".$line."</li>";
-                                    }
-                                }
-                            }
-                        }
-                        
                     } //End of file_exists
                     //If the specified file doesn't exist, display error
                     else 
@@ -568,6 +538,36 @@
                         } //End of for-loop with $smartEnabledDisks
                         echo "</ul>"; //End of machine Info
                     }//End of If smartEnabledDisks
+
+                    #Grabbing the essential information of each server
+                    if($informationSwitch == 1)
+                    {
+                        $informationFilename = $MNAME."_information.txt";
+                        if(file_exists($informationFilename))
+                        {   
+                            echo "<br>";
+                            echo "<h4>Space Used</h4>";
+
+                            $fh=file($informationFilename,FILE_IGNORE_NEW_LINES|FILE_SKIP_EMPTY_LINES);
+                            //Process each line in the file
+                            foreach($fh as $line)
+                            {
+
+                                if(strpos($line,"Filesystem")!==FALSE || strpos($line,'/dev/md')!==FALSE)
+                                {
+                                    
+                                    echo "<li><pre>".$line."</pre></li>";
+
+                                }
+
+                                if(strpos($line,"up ")!==FALSE)
+                                {
+                                    echo "<br><h4> Uptime:</h4><li class='active'>".$line."</li>";
+                                }
+                            }
+                        }
+                    }
+                    
                     echo "</div>"; //End of div
                 }//End of Loop
                 //Starting Loop for displaying all of the machines onto the machine monitoring page in banana************
