@@ -539,6 +539,7 @@
                         echo "</ul>"; //End of machine Info
                     }//End of If smartEnabledDisks
 
+                    echo "<ul>";
                     #Grabbing the essential information of each server
                     if($informationSwitch == 1)
                     {
@@ -567,7 +568,7 @@
                             }
                         }
                     }
-                    
+                    echo "</ul>";
                     echo "</div>"; //End of div
                 }//End of Loop
                 //Starting Loop for displaying all of the machines onto the machine monitoring page in banana************
