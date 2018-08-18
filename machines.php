@@ -547,7 +547,7 @@
                         if(file_exists($informationFilename))
                         {   
                             echo "<br>";
-                            echo "<h4>Space Used</h4>";
+                            echo "<h4>&nbsp;&nbsp;>&nbsp;&nbsp;Space Used</h4>";
 
                             $fh=file($informationFilename,FILE_IGNORE_NEW_LINES|FILE_SKIP_EMPTY_LINES);
                             //Process each line in the file
@@ -557,13 +557,13 @@
                                 if(strpos($line,"Filesystem")!==FALSE || strpos($line,'/dev/md')!==FALSE)
                                 {
                                     
-                                    echo "<li><pre>".$line."</pre></li>";
+                                    echo "<li>>&nbsp;&nbsp;>&nbsp;&nbsp;>&nbsp;&nbsp;<pre>".$line."</pre></li>";
 
                                 }
 
                                 if(strpos($line,"up ")!==FALSE)
                                 {
-                                    echo "<br><h4> Uptime:</h4><li class='active'>".$line."</li>";
+                                    echo "<br><h4>>&nbsp;&nbsp;>&nbsp;&nbsp; Uptime:</h4><li class='active'>".$line."</li>";
                                 }
                             }
                         }
