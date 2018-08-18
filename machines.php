@@ -138,15 +138,16 @@
                     // Initially set the smartEnabled to false.
                     // This value remains zero for the machines on which smartctl is not enabled
                     $smartEnabledDisks = 0;
+
+                    // Creating a Switch for information.txt (for users, uptime, and space available)
+                    $informationSwitch = 0;
+
                     //Create a new div
                     echo "<div class=\"machine\">";
                     //Set div headers and attach smartctl data (if smart support is enabled)
                     if (strpos($name,"banana-OS") !== FALSE) 
                     {
                         echo "<h3 class=\"machineName\">banana OS RAID</h3>";
-                        $smartfile1 = "smartctl/banana-sdc.txt"; $smartdisk1 = "/dev/sdc";
-                        $smartfile2 = "smartctl/banana-sdd.txt"; $smartdisk2 = "/dev/sdd";
-                        $smartEnabledDisks = 2;
                         $MNAME = "banana";
                     }
                     if (strpos($name,"banana-Data") !== FALSE) 
@@ -156,6 +157,7 @@
                         $smartfile2 = "smartctl/banana-sdb.txt"; $smartdisk2 = "/dev/sdb";
                         $smartEnabledDisks = 2;
                         $MNAME = "banana";
+                        $informationSwitch = 1;
                     }
                     if (strpos($name,"entropy1-vdisk") !== FALSE) 
                     {
@@ -172,6 +174,7 @@
                         $smartfile2 = "smartctl/entropy1-sdf.txt"; $smartdisk2 = "/dev/sdf";
                         $smartEnabledDisks = 2;
                         $MNAME = "entropy1";
+                        $informationSwitch = 1;
                     }
                     if (strpos($name,"folding1") !== FALSE)
                     {
@@ -181,6 +184,8 @@
                         $smartfile3 = "smartctl/folding1-sdc.txt"; $smartdisk3 = "/dev/sdc";
                         $smartfile4 = "smartctl/folding1-sdd.txt"; $smartdisk4 = "/dev/sdd";
                         $smartEnabledDisks = 4;
+                        $informationSwitch = 1;
+                        $MNAME = "folding1";
                     }
                     if (strpos($name,"folding2") !== FALSE) 
                     {
@@ -190,6 +195,8 @@
                         $smartfile3 = "smartctl/folding2-sdc.txt"; $smartdisk3 = "/dev/sdc";
                         $smartfile4 = "smartctl/folding2-sdd.txt"; $smartdisk4 = "/dev/sdd";
                         $smartEnabledDisks = 4;
+                        $informationSwitch = 1;
+                        $MNAME = "folding2";
                     } 
                     if(strpos($name,"storage1-OS") !== FALSE) 
                     {
@@ -204,6 +211,8 @@
                         $smartfile1 = "smartctl/storage1-sde.txt"; $smartdisk1 = "/dev/sde";
                         $smartfile2 = "smartctl/storage1-sdf.txt"; $smartdisk2 = "/dev/sdf";
                         $smartEnabledDisks = 2;
+                        $informationSwitch = 1;
+                        $MNAME = "storage1";
                     }
                     //Generate list of required output
                     echo "<ul class=\"machineInfo\">";
@@ -266,27 +275,6 @@
                                     if(strpos($line,"Generated On") !==FALSE)
                                     {
                                         echo "<li class=\"error\">".$timediff."</li>";
-                                    }
-                                    //This section is used to sent out an alert if any system is unpingable.
-                                    if (strpos($MNAME,"NOTBANANA") !== FALSE) 
-                                    {
-                                        $length = strlen($name);
-                                        $nameTemp = substr($name, 0, $length - 4);
-                                        $pingReturn = 0;
-                                        $pingOutput = exec("ping $nameTemp -c 1 -W 1", $pingTemp, $pingReturn);
-                                        if ($pingReturn != 0) 
-                                        {
-                                            echo "<li style=\"font-size: 20pt;\" class=\"error\"> SYSTEM IS UNPINGABLE!!! </li>";
-                                        }
-                                    } 
-                                    else 
-                                    {
-                                        $pingReturn = 0;
-                                        $pingOutput = exec("ping $MNAME -c 1 -W 1", $pingTemp, $pingReturn);
-                                        if ($pingReturn != 0) 
-                                        {
-                                            echo "<li style=\"font-size: 20pt;\" class=\"error\"> SYSTEM IS UNPINGABLE!!! </li>";
-                                        }
                                     }
                                 } 
                                 else 
@@ -373,6 +361,36 @@
                                 }
                             }
                         } // End of file processing
+
+                        #Grabbing the essential information of each server
+                        if($informationSwitch == 1)
+                        {
+                            $informationFilename = $MNAME."_information.txt";
+                            if(file_exists($informationFilename))
+                            {   
+                                echo "<br>";
+                                echo "<h4>Space Used</h4>";
+
+                                $fh=file($informationFilename,FILE_IGNORE_NEW_LINES|FILE_SKIP_EMPTY_LINES);
+                                //Process each line in the file
+                                foreach($fh as $line)
+                                {
+
+                                    if(strpos($line,"Filesystem")!==FALSE || strpos($line,'/dev/md')!==FALSE)
+                                    {
+                                        
+                                        echo "<li><pre>".$line."</pre></li>";
+
+                                    }
+
+                                    if(strpos($line,"up ")!==FALSE)
+                                    {
+                                        echo "<br><h4> Uptime:</h4><li class='active'>".$line."</li>";
+                                    }
+                                }
+                            }
+                        }
+                        
                     } //End of file_exists
                     //If the specified file doesn't exist, display error
                     else 
@@ -1065,40 +1083,31 @@
                         } //End of for($j=1;$j<=3;$j++), for 2 disks on each sorinX machines 
                         
                         #Grabbing the uptime & df -h of each desktop
-                        $uptimeFilename = "sorin".$i."_information.txt";
-                        if(file_exists($uptimeFilename))
+                        $informationFilename = "sorin".$i."_information.txt";
+                        if(file_exists($informationFilename))
                         {   
                             echo "<br>";
                             echo "<h4>Space Used</h4>";
 
-                            
+                            $fh=file($informationFilename,FILE_IGNORE_NEW_LINES|FILE_SKIP_EMPTY_LINES);
+                            //Process each line in the file
+                            foreach($fh as $line)
+                            {
 
-                            $fh=file($uptimeFilename,FILE_IGNORE_NEW_LINES|FILE_SKIP_EMPTY_LINES);
-                                //Process each line in the file
-                                foreach($fh as $line)
+                                if(strpos($line,"Filesystem")!==FALSE || strpos($line,'/dev/md')!==FALSE)
                                 {
-
-                                    if(strpos($line,"Filesystem")!==FALSE || strpos($line,'/dev/md')!==FALSE)
-                                    {
-                                        
-                                        echo "<li><pre>".$line."</pre></li>";
-
-                                    }
-
-                                    if(strpos($line,"up ")!==FALSE)
-                                    {
-                                        echo "<br><h4> Uptime:</h4><li class='active'>".$line."</li>";
-                                    }
-
+                                    
+                                    echo "<li><pre>".$line."</pre></li>";
 
                                 }
-                            
-                            #echo "<br>";
-                            #echo "<h4>Uptime</h4>";
 
-                            #$fileContents=file_get_contents($uptimeFilename);
+                                if(strpos($line,"up ")!==FALSE)
+                                {
+                                    echo "<br><h4> Uptime:</h4><li class='active'>".$line."</li>";
+                                }
 
-                            #echo "<li>".$fileContents."</li>";
+
+                            }
                         }
 
                         echo "</ul>"; //End of machine info
