@@ -538,7 +538,8 @@
                         } //End of for-loop with $smartEnabledDisks
                         echo "</ul>"; //End of machine Info
                     }//End of If smartEnabledDisks
-
+                    
+                    echo "<ul>";
                     #Grabbing the essential information of each server
                     if($informationSwitch == 1)
                     {
@@ -556,17 +557,18 @@
                                 if(strpos($line,"Filesystem")!==FALSE || strpos($line,'/dev/md')!==FALSE)
                                 {
                                     
-                                    echo "<ul><pre>".$line."</pre></ul>";
+                                    echo "<li><pre>".$line."</pre></li>";
 
                                 }
 
                                 if(strpos($line,"up ")!==FALSE)
                                 {
-                                    echo "<br><h4> Uptime:</h4><ul class='active'>".$line."</ul>";
+                                    echo "<br><h4> Uptime:</h4><li class='active'>".$line."</li>";
                                 }
                             }
                         }
                     }
+                    echo "</ul>";
                     echo "</div>"; //End of div
                 }//End of Loop
                 //Starting Loop for displaying all of the machines onto the machine monitoring page in banana************
