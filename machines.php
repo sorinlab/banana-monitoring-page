@@ -128,6 +128,7 @@
             <div id="servers">
                 <h2> SERVERS </h2>
                 <?php
+                echo "<ul>";
                 //Array of file names that store server info
                 // To add a new server add the new file names here
                 $filenames = array('banana-DataRaid.txt','banana-OSRaid.txt','storage1-Data.txt','storage1-OS.txt', 'entropy1.txt', 'entropy1-vdisk.txt', 'folding1.txt','folding2.txt');
@@ -539,7 +540,6 @@
                         echo "</ul>"; //End of machine Info
                     }//End of If smartEnabledDisks
                     
-                    echo "<ul>";
                     #Grabbing the essential information of each server
                     if($informationSwitch == 1)
                     {
@@ -547,7 +547,7 @@
                         if(file_exists($informationFilename))
                         {   
                             echo "<br>";
-                            echo "<h4>&nbsp;&nbsp;&nbsp;&nbsp;Space Used</h4>";
+                            echo "<h4>Space Used</h4>";
 
                             $fh=file($informationFilename,FILE_IGNORE_NEW_LINES|FILE_SKIP_EMPTY_LINES);
                             //Process each line in the file
@@ -557,13 +557,13 @@
                                 if(strpos($line,"Filesystem")!==FALSE || strpos($line,'/dev/md')!==FALSE)
                                 {
                                     
-                                    echo "<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<pre>".$line."</pre></li>";
+                                    echo "<li><pre>".$line."</pre></li>";
 
                                 }
 
                                 if(strpos($line,"up ")!==FALSE)
                                 {
-                                    echo "<br><h4> &nbsp;&nbsp;&nbsp;&nbsp;Uptime:</h4><li class='active'>".$line."</li>";
+                                    echo "<br><h4> Uptime:</h4><li class='active'>".$line."</li>";
                                 }
                             }
                         }
