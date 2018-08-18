@@ -128,7 +128,6 @@
             <div id="servers">
                 <h2> SERVERS </h2>
                 <?php
-                echo "<ul>";
                 //Array of file names that store server info
                 // To add a new server add the new file names here
                 $filenames = array('banana-DataRaid.txt','banana-OSRaid.txt','storage1-Data.txt','storage1-OS.txt', 'entropy1.txt', 'entropy1-vdisk.txt', 'folding1.txt','folding2.txt');
@@ -537,7 +536,6 @@
                                 }
                             }
                         } //End of for-loop with $smartEnabledDisks
-                        echo "</ul>"; //End of machine Info
                     }//End of If smartEnabledDisks
                     
                     #Grabbing the essential information of each server
@@ -568,7 +566,7 @@
                             }
                         }
                     }
-                    echo "</ul>";
+                    echo "</ul>"; //End of machine Info
                     echo "</div>"; //End of div
                 }//End of Loop
                 //Starting Loop for displaying all of the machines onto the machine monitoring page in banana************
