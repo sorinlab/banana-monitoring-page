@@ -599,8 +599,7 @@
                         $informationFilename = "sorin".$i."_information.txt";
                         if(file_exists($informationFilename))
                         {   
-                            echo "<br>";
-
+                            
                             $fh=file($informationFilename,FILE_IGNORE_NEW_LINES|FILE_SKIP_EMPTY_LINES);
                             //Process each line in the file
                             foreach($fh as $line)
