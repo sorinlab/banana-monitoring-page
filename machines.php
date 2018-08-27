@@ -607,12 +607,13 @@
                             foreach($fh as $line)
                             {
 
-                                if(strpos($line,"Users")!==FALSE)
+                                if(strpos($line,"Users:")!==FALSE)
                                 {
                                     
                                     echo "<li>".$line."</li>";
                                     continue;
-                                }                      
+                                }     
+                            }                 
                        
                         //Check if the file exists
                         if(file_exists($filename))
