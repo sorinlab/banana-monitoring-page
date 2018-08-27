@@ -611,7 +611,7 @@
                                 {
                                     
                                     echo "<li>".$line."</li>";
-
+                                    continue;
                                 }                      
                        
                         //Check if the file exists
