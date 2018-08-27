@@ -579,28 +579,7 @@
                     $offline_desktops = array(2,5);
                     
                     for($i=1;$i<=13;$i++)
-                    {
-                                            
-                        //Grabbing User information
-                        $informationFilename = "sorin".$i."_information.txt";
-                        if(file_exists($informationFilename))
-                        {   
-                            echo "<br>";
-                            echo "<h4>Users</h4>";
-
-                            $fh=file($informationFilename,FILE_IGNORE_NEW_LINES|FILE_SKIP_EMPTY_LINES);
-                            //Process each line in the file
-                            foreach($fh as $line)
-                            {
-
-                                if(strpos($line,"Users:")!==FALSE)
-                                {
-                                    
-                                    echo "<li>".$line."</li>";
-                                    continue;
-                                }     
-                            }   
-                        
+                    {                        
                         //Generate the file name
                         $filename = "sorin".$i.".txt";
                         //Create the div for each machine
