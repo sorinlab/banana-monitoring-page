@@ -608,6 +608,8 @@
                                 {
                                     
                                     echo "<li>".$line."</li>";
+                                    echo "<br>";
+
                                     continue;
                                 }     
                             }   
