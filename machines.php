@@ -595,7 +595,7 @@
                             continue;
                         }                 
                                                                        
-                        //Grabbing User information
+                        //Displaying users of each desktop
                         $informationFilename = "sorin".$i."_information.txt";
                         if(file_exists($informationFilename))
                         {   
@@ -604,7 +604,7 @@
                             //Process each line in the file
                             foreach($fh as $line)
                             {
-                                if(strpos($line,"Users:")!==FALSE)
+                                if(strpos($line,"Current")!==FALSE)
                                 {
                                     echo "<h4>Users</h4>";
                                     echo "<li>".$line."</li>";
