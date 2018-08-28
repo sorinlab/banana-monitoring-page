@@ -606,7 +606,7 @@
                             {
                                 if(strpos($line,"Users:")!==FALSE)
                                 {
-                                    
+                                    echo "<br>";
                                     echo "<li>".$line."</li>";
                                     echo "<br>";
 
