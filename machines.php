@@ -607,7 +607,6 @@
                                 if(strpos($line,"Current")!==FALSE)
                                 {
                                     echo "<h4>Users</h4>";
-                                    $string = .$line;
                                     echo "<li>".$line."</li>";
                                     echo "<br>";
 
