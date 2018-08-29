@@ -605,7 +605,7 @@
                             foreach($fh as $line)
                             {
                                 if(strpos($line,"Current")!==FALSE)
-                                {
+                              {
                                     echo "<h4>Users</h4>";
                                     echo "<li>".$line."</li>";
                                     echo "<br>";
