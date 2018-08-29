@@ -600,7 +600,7 @@
                         if(file_exists($informationFilename))
                         {   
                             
-                            $fh=file($informationFilename,FILE_IGNORE_NEW_LINES|FILE_SKIP_EMPTY_LINES);
+                            $fh=file_get_contents($informationFilename,FILE_IGNORE_NEW_LINES|FILE_SKIP_EMPTY_LINES);
                             //Process each line in the file
                             foreach($fh as $line)
                             {
