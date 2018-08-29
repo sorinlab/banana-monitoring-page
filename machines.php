@@ -600,13 +600,14 @@
                         if(file_exists($informationFilename))
                         {   
                             
-                            $fh=file_get_contents($informationFilename,FILE_IGNORE_NEW_LINES|FILE_SKIP_EMPTY_LINES);
+                            $fh=file($informationFilename,FILE_IGNORE_NEW_LINES|FILE_SKIP_EMPTY_LINES);
                             //Process each line in the file
                             foreach($fh as $line)
                             {
                                 if(strpos($line,"Current")!==FALSE)
-                              {
+                                {
                                     echo "<h4>Users</h4>";
+                                    $string = .$line;
                                     echo "<li>".$line."</li>";
                                     echo "<br>";
 
