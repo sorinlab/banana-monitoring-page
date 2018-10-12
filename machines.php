@@ -606,8 +606,10 @@
                             {
                                 if(strpos($line,"Current")!==FALSE)
                                 {
+                                    
+                                    $new_line = str_replace('Current', '', $line);
                                     echo "<h4>Users</h4>";
-                                    echo "<li>".$line."</li>";
+                                    echo "<li>".$new_line."</li>";
                                     echo "<br>";
 
                                     continue;
