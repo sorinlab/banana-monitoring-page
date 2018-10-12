@@ -607,11 +607,9 @@
                                 if(strpos($line,"Current")!==FALSE)
                                 {
                                     
-                                    $replacing = ["Current", "users:", "server"];
+                                    $replacing = ["Current", "users:", ", server"];
                                     $replace_with = ["", "", ""];
                                     $new_line = str_replace($replacing, $replace_with, $line);
-                                    //$new_line = str_replace('Current', '', $line);
-                                    //$newer_line = str_replace('users:', '', $new_line);
                                     echo "<h4>Users</h4>";
                                     echo "<li>".$new_line."</li>";
                                     echo "<br>";
