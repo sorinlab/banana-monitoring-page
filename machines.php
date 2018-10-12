@@ -608,8 +608,9 @@
                                 {
                                     
                                     $new_line = str_replace('Current', '', $line);
+                                    $newer_line = str_replace('user', '', $new_line);
                                     echo "<h4>Users</h4>";
-                                    echo "<li>".$new_line."</li>";
+                                    echo "<li>".$newer_line."</li>";
                                     echo "<br>";
 
                                     continue;
