@@ -608,7 +608,7 @@
                                 {
                                     
                                     //$replacing = ["Current", "users:", ", server"];
-                                    $replacing = [", server"];
+                                    $replacing = ["server"];
                                     
                                     $replace_with = [""];
                                     //$replace_with = ["", "", ""];
