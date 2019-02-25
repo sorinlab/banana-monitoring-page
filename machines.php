@@ -1157,8 +1157,3 @@
         </div>
     </body> 
 </html>
-
-/usr/sbin/smartctl -a /dev/sda > /root/machine_monitoring/entropy1-sda.txt && /usr/sbin/smartctl -a /dev/sdb > /root/machine_monitoring/entropy1-sdb.txt
-
-
-/sbin/mdadm --detail /dev/md1 > /root/machine_monitoring/entropy1-OS.txt && /sbin/mdadm --detail /dev/md127 > /root/machine_monitoring/entropy1-DATA.txt && /usr/bin/scp /root/machine_monitoring/entropy1-OS.txt server@banana:/home2/www/banana/ && /usr/bin/scp /root/machine_monitoring/entropy1-DATA.txt server@banana:/home2/www/banana/ && /usr/bin/scp /root/machine_monitoring/entropy1-sd*.txt server@banana:/home2/www/banana/smartctl/
