@@ -130,7 +130,7 @@
                 <?php
                 //Array of file names that store server info
                 // To add a new server add the new file names here
-                $filenames = array('banana-DataRaid.txt','banana-OSRaid.txt','storage1-Data.txt','storage1-OS.txt', 'entropy1.txt', 'entropy1-vdisk.txt', 'folding1.txt','folding2.txt');
+                $filenames = array('banana-DataRaid.txt','banana-OSRaid.txt','storage1-Data.txt','storage1-OS.txt', 'entropy1-OS.txt', 'entropy1-DATA.txt', 'folding1.txt','folding2.txt');
                 //Process each file in the array one by one
                 foreach ($filenames as $name) 
                 {
@@ -576,7 +576,7 @@
                 <h2> DESKTOPS </h2>
                 <?php
                     
-                    $offline_desktops = array(2,5);
+                    $offline_desktops = array(5,8);
                     
                     for($i=1;$i<=13;$i++)
                     {                        
@@ -1157,3 +1157,8 @@
         </div>
     </body> 
 </html>
+
+/usr/sbin/smartctl -a /dev/sda > /root/machine_monitoring/entropy1-sda.txt && /usr/sbin/smartctl -a /dev/sdb > /root/machine_monitoring/entropy1-sdb.txt
+
+
+/sbin/mdadm --detail /dev/md1 > /root/machine_monitoring/entropy1-OS.txt && /sbin/mdadm --detail /dev/md127 > /root/machine_monitoring/entropy1-DATA.txt && /usr/bin/scp /root/machine_monitoring/entropy1-OS.txt server@banana:/home2/www/banana/ && /usr/bin/scp /root/machine_monitoring/entropy1-DATA.txt server@banana:/home2/www/banana/ && /usr/bin/scp /root/machine_monitoring/entropy1-sd*.txt server@banana:/home2/www/banana/smartctl/
