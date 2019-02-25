@@ -159,19 +159,19 @@
                         $MNAME = "banana";
                         $informationSwitch = 1;
                     }
-                    if (strpos($name,"entropy1-vdisk") !== FALSE) 
+                    if (strpos($name,"entropy1-OS") !== FALSE) 
                     {
                         echo "<h3 class=\"machineName\">entropy1 OS RAID</h3>";
-                        $smartfile1 = "smartctl/entropy1-sg6.txt"; $smartdisk1 = "/dev/sg6";
-                        $smartfile2 = "smartctl/entropy1-sg7.txt"; $smartdisk2 = "/dev/sg7";
+                        $smartfile1 = "smartctl/entropy1-sda.txt"; $smartdisk1 = "/dev/sda";
+                        $smartfile2 = "smartctl/entropy1-sdb.txt"; $smartdisk2 = "/dev/sdb";
                         $smartEnabledDisks = 2;
                         $MNAME = "entropy1";
                     }
-                    if (strpos($name,"entropy1.") !== FALSE) 
+                    if (strpos($name,"entropy1-DATA") !== FALSE) 
                     {
                         echo "<h3 class=\"machineName\">entropy1 Data RAID</h3>";
-                        $smartfile1 = "smartctl/entropy1-sde.txt"; $smartdisk1 = "/dev/sde";
-                        $smartfile2 = "smartctl/entropy1-sdf.txt"; $smartdisk2 = "/dev/sdf";
+                        $smartfile1 = "smartctl/entropy1-sdg.txt"; $smartdisk1 = "/dev/sdg";
+                        $smartfile2 = "smartctl/entropy1-sdh.txt"; $smartdisk2 = "/dev/sdh";
                         $smartEnabledDisks = 2;
                         $MNAME = "entropy1";
                         $informationSwitch = 1;
