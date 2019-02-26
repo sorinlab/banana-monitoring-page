@@ -242,12 +242,6 @@
                                 echo "<h4 class=\"handle\" name=".$name.">".$line."</h4>";
                                 continue;
                             }
-                            // Special case for entropy1 Virtual Disk
-                            if (strpos($line,"Virtual Disks") !== FALSE)
-                            {
-                                echo "<h4 class=\"handle\" name=".$name.">Virtual Disk</h4>";
-                                continue;
-                            }
                             if(strpos($line,"Update Time") !==FALSE || strpos($line,"Generated On") !==FALSE) 
                             {
                                 //Extract the update time from the line
@@ -316,8 +310,7 @@
                                 continue;
                             }
                             //Code for identifying the state of RAID Array
-                            // Note: we prevent output for entropy1's Virtual Disk. It uses omreport.
-                            if(strpos($line,"State") !==FALSE and $name !== "entropy1-vdisk.txt")
+                            if(strpos($line,"State") !==FALSE)
                             {
                                 //check if the state is clean or active else display an error
                                 if(strpos($line,"clean")!==FALSE || strpos($line,"active")!==FALSE || strpos($line,"Online")!==FALSE) 
@@ -342,23 +335,6 @@
                             if  (strpos($line,"Array Size")!==FALSE || strpos($line,"Active Devices")!==FALSE || strpos($line,"Working Devices")!==FALSE || strpos($line,"Controller")!==FALSE || strpos($line,"Disk Space")!==FALSE) 
                             {
                                 echo "<li>".$line."</li>";
-                            }
-                            // Special case for entropy1's Virtual Disk. Reports size of array (not "Stripe element size")
-                            if (strpos($line, "Size")!==FALSE and strpos($line, "Stripe")===FALSE and $name === "entropy1-vdisk.txt")
-                            {
-                                echo "<li>".$line."</li>";
-                            }
-                            // Special case for entropy1's Virtual Disk. Reports the state of the RAID array (prevents "T10 Protection Information Status" from triggering error).
-                            if (strpos($line,"Status")!==FALSE and strpos($line, "Protection")===FALSE)
-                            {
-                                if(strpos($line,"Ok")!==FALSE)
-                                {
-                                    echo "<li class=\"active\">Status : Ok</li>";
-                                }
-                                else 
-                                {
-                                    echo "<li class=\"critical\">"."Possible RAID Degredation"."</li>";
-                                }
                             }
                         } // End of file processing
                     } //End of file_exists
