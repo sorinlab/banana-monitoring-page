@@ -115,8 +115,7 @@
             <div id="header">
                 <h2> SORIN LAB RAID INFO </h2>
                 <ul id="mainNav">
-                    <li><a href="http://spot.cnsm.csulb.edu/ganglia/">Ganglia</a></li>
-                    <li><a href="http://spot.cnsm.csulb.edu/status.html">Spot-Status</a></li>
+                    <li><a href="https://docs.google.com/spreadsheets/d/1AXo7M290S0mdFwsS4SGttfpsvaSxMiiCS9GERvh_kE4/edit#gid=0">Software/Hardware</a></li>
                     <li><a href="http://folding.cnsm.csulb.edu/wiki/index.php/SysAdmin_To_Do_List">To-Do</a></li>
                     <li><a href="http://folding.cnsm.csulb.edu/wiki">Wiki</a></li>
                     <li><a href="http://folding.cnsm.csulb.edu/wiki/index.php/Machine_Monitoring_Page">Monitor-Info</a></li>
