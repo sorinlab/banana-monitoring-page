@@ -779,7 +779,7 @@
                                 }
                             }
                             //This special case is for sorinXX that has more than 2 drives
-                            if($j==3 and ($i==12 || $i==9 || $i==3))
+                            if($j==3 and ($i==3 || $i==9 || $i==10 || $i==12))
                             {
                                 // Sorin9's third drive is called sdb
                                 if($i==9)
