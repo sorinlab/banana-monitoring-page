@@ -147,13 +147,17 @@
                     if (strpos($name,"banana-OS") !== FALSE) 
                     {
                         echo "<h3 class=\"machineName\">banana OS RAID</h3>";
+                        $smartfile1 = "smartctl/banana-sda.txt"; $smartdisk1 = "/dev/sda";
+                        $smartfile2 = "smartctl/banana-sdb.txt"; $smartdisk2 = "/dev/sdb";
+                        $smartEnabledDisks = 2;
                         $MNAME = "banana";
+                        $informationSwitch = 1;
                     }
                     if (strpos($name,"banana-Data") !== FALSE) 
                     {
                         echo "<h3 class=\"machineName\">banana Data RAID</h3>";
-                        $smartfile1 = "smartctl/banana-sda.txt"; $smartdisk1 = "/dev/sda";
-                        $smartfile2 = "smartctl/banana-sdb.txt"; $smartdisk2 = "/dev/sdb";
+                        $smartfile1 = "smartctl/banana-sdc.txt"; $smartdisk1 = "/dev/sdc";
+                        $smartfile2 = "smartctl/banana-sdd.txt"; $smartdisk2 = "/dev/sdd";
                         $smartEnabledDisks = 2;
                         $MNAME = "banana";
                         $informationSwitch = 1;
