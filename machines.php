@@ -147,13 +147,17 @@
                     if (strpos($name,"banana-OS") !== FALSE) 
                     {
                         echo "<h3 class=\"machineName\">banana OS RAID</h3>";
+                        $smartfile1 = "smartctl/banana-sda.txt"; $smartdisk1 = "/dev/sda";
+                        $smartfile2 = "smartctl/banana-sdb.txt"; $smartdisk2 = "/dev/sdb";
+                        $smartEnabledDisks = 2;
                         $MNAME = "banana";
+                        $informationSwitch = 1;
                     }
                     if (strpos($name,"banana-Data") !== FALSE) 
                     {
                         echo "<h3 class=\"machineName\">banana Data RAID</h3>";
-                        $smartfile1 = "smartctl/banana-sda.txt"; $smartdisk1 = "/dev/sda";
-                        $smartfile2 = "smartctl/banana-sdb.txt"; $smartdisk2 = "/dev/sdb";
+                        $smartfile1 = "smartctl/banana-sdc.txt"; $smartdisk1 = "/dev/sdc";
+                        $smartfile2 = "smartctl/banana-sdd.txt"; $smartdisk2 = "/dev/sdd";
                         $smartEnabledDisks = 2;
                         $MNAME = "banana";
                         $informationSwitch = 1;
@@ -779,7 +783,7 @@
                                 }
                             }
                             //This special case is for sorinXX that has more than 2 drives
-                            if($j==3 and ($i==3 || $i==9 ||  $i==10 || $i==12))
+                            if($j==3 and ($i==3 || $i==9 ||  $i==10 || $i==11 || $i==12))
                             {
                                 // Sorin9's third drive is called sdb
                                 if($i==9)
@@ -938,7 +942,7 @@
                                 }    
                             } //End of the if($j<=2)
                             //This case statement is used to display sorin12 SMARTctl sdc drive.Modify it if more machines have 3 drives
-                            if($j==3 && ($i==3 || $i==9 ||  $i==10 || $i==12))
+                            if($j==3 && ($i==3 || $i==9 ||  $i==10 || $i==11 || $i==12))
                             {
                                 //Check if the file exists
                                 if(file_exists($filename))
@@ -1080,7 +1084,7 @@
                                 {
                                     echo "<li class=\"error\"> File Not Found </li>";
                                 }
-                            } //End of if($i==3 || $i==9 ||  $i==10 || $i==12)
+                            } //End of if($i==3 || $i==9 ||  $i==10 ||$i==11 || $i==12)
                         } //End of for($j=1;$j<=3;$j++), for 2 disks on each sorinX machines 
                         
                         #Grabbing the uptime & df -h of each desktop
