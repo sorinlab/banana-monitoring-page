@@ -129,7 +129,7 @@
                 <?php
                 //Array of file names that store server info
                 // To add a new server add the new file names here
-                $filenames = array('banana-DataRaid.txt','banana-OSRaid.txt','storage1-Data.txt','storage1-OS.txt', 'entropy1-OS.txt', 'entropy1-DATA.txt', 'folding1.txt','folding2.txt');
+                $filenames = array('banana-OSRaid.txt','banana-DataRaid.txt','storage1-OS.txt','storage1-Data.txt','entropy1-OS.txt', 'entropy1-DATA.txt', 'folding1.txt','folding2.txt');
                 //Process each file in the array one by one
                 foreach ($filenames as $name) 
                 {
@@ -169,6 +169,7 @@
                         $smartfile2 = "smartctl/entropy1-sdb.txt"; $smartdisk2 = "/dev/sdb";
                         $smartEnabledDisks = 2;
                         $MNAME = "entropy1";
+                        $informationSwitch = 1;
                     }
                     if (strpos($name,"entropy1-DATA") !== FALSE) 
                     {
@@ -187,8 +188,8 @@
                         $smartfile3 = "smartctl/folding1-sdc.txt"; $smartdisk3 = "/dev/sdc";
                         $smartfile4 = "smartctl/folding1-sdd.txt"; $smartdisk4 = "/dev/sdd";
                         $smartEnabledDisks = 4;
-                        $informationSwitch = 1;
                         $MNAME = "folding1";
+                        $informationSwitch = 1;
                     }
                     if (strpos($name,"folding2") !== FALSE) 
                     {
@@ -198,8 +199,8 @@
                         $smartfile3 = "smartctl/folding2-sdc.txt"; $smartdisk3 = "/dev/sdc";
                         $smartfile4 = "smartctl/folding2-sdd.txt"; $smartdisk4 = "/dev/sdd";
                         $smartEnabledDisks = 4;
-                        $informationSwitch = 1;
                         $MNAME = "folding2";
+                        $informationSwitch = 1;
                     } 
                     if(strpos($name,"storage1-OS") !== FALSE) 
                     {
@@ -207,6 +208,8 @@
                         $smartfile1 = "smartctl/storage1-sdg.txt"; $smartdisk1 = "/dev/sdg";
                         $smartfile2 = "smartctl/storage1-sdh.txt"; $smartdisk2 = "/dev/sdh";
                         $smartEnabledDisks = 2;
+                        $MNAME = "storage1";
+                        $informationSwitch = 1;
                     }
                     if (strpos($name,"storage1-Data") !== FALSE) 
                     {
@@ -214,8 +217,8 @@
                         $smartfile1 = "smartctl/storage1-sde.txt"; $smartdisk1 = "/dev/sde";
                         $smartfile2 = "smartctl/storage1-sdf.txt"; $smartdisk2 = "/dev/sdf";
                         $smartEnabledDisks = 2;
-                        $informationSwitch = 1;
                         $MNAME = "storage1";
+                        $informationSwitch = 1;
                     }
                     //Generate list of required output
                     echo "<ul class=\"machineInfo\">";
