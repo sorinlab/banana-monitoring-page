@@ -134,6 +134,7 @@
                 foreach ($filenames as $name) 
                 {
                     $MNAME = "NOTBANANA";
+                    $OS_DATA = "N/A";
                     // Initially set the smartEnabled to false.
                     // This value remains zero for the machines on which smartctl is not enabled
                     $smartEnabledDisks = 0;
@@ -151,6 +152,7 @@
                         $smartfile2 = "smartctl/banana-sdb.txt"; $smartdisk2 = "/dev/sdb";
                         $smartEnabledDisks = 2;
                         $MNAME = "banana";
+                        $OS_DATA = "OS";
                         $informationSwitch = 1;
                     }
                     if (strpos($name,"banana-Data") !== FALSE) 
@@ -160,6 +162,7 @@
                         $smartfile2 = "smartctl/banana-sdd.txt"; $smartdisk2 = "/dev/sdd";
                         $smartEnabledDisks = 2;
                         $MNAME = "banana";
+                        $OS_DATA = "DATA";
                         $informationSwitch = 1;
                     }
                     if (strpos($name,"entropy1-OS") !== FALSE) 
@@ -169,6 +172,7 @@
                         $smartfile2 = "smartctl/entropy1-sdb.txt"; $smartdisk2 = "/dev/sdb";
                         $smartEnabledDisks = 2;
                         $MNAME = "entropy1";
+                        $OS_DATA = "OS";
                         $informationSwitch = 1;
                     }
                     if (strpos($name,"entropy1-DATA") !== FALSE) 
@@ -178,6 +182,7 @@
                         $smartfile2 = "smartctl/entropy1-sdh.txt"; $smartdisk2 = "/dev/sdh";
                         $smartEnabledDisks = 2;
                         $MNAME = "entropy1";
+                        $OS_DATA = "DATA";
                         $informationSwitch = 1;
                     }
                     if (strpos($name,"folding1") !== FALSE)
@@ -209,6 +214,7 @@
                         $smartfile2 = "smartctl/storage1-sdh.txt"; $smartdisk2 = "/dev/sdh";
                         $smartEnabledDisks = 2;
                         $MNAME = "storage1";
+                        $OS_DATA = "OS";
                         $informationSwitch = 1;
                     }
                     if (strpos($name,"storage1-Data") !== FALSE) 
@@ -218,6 +224,7 @@
                         $smartfile2 = "smartctl/storage1-sdf.txt"; $smartdisk2 = "/dev/sdf";
                         $smartEnabledDisks = 2;
                         $MNAME = "storage1";
+                        $OS_DATA = "DATA";
                         $informationSwitch = 1;
                     }
                     //Generate list of required output
@@ -534,10 +541,25 @@
                             foreach($fh as $line)
                             {
 
-                                if(strpos($line,"Filesystem")!==FALSE || strpos($line,'/dev/md')!==FALSE)
+                                if(strpos($line,"Filesystem")!==FALSE) echo "<li><pre>".$line."</pre></li>";
+                                
+                                if(strpos($line,'/dev/md')!==FALSE)
                                 {
-                                    
-                                    echo "<li><pre>".$line."</pre></li>";
+                                    if($OS_DATA == "OS") {
+                                        if(strpos($line,"md127")!==FALSE) {    
+                                        }
+                                        else {
+                                            echo "<li><pre>".$line."</pre></li>";
+                                        }
+                                    }   
+                                    else if($OS_DATA == "DATA") {
+                                        if(strpos($line,"md127")!==FALSE) {
+                                            echo "<li><pre>".$line."</pre></li>";    
+                                        }
+                                    }
+                                    else {
+                                        echo "<li><pre>".$line."</pre></li>";
+                                    }
 
                                 }
 
@@ -559,7 +581,8 @@
                 <?php
                     
                     $offline_desktops = array(5,8);
-                    
+                    $desktops_with_3_drives = array(3,9,10,11,12);
+
                     for($i=1;$i<=13;$i++)
                     {                        
                         //Generate the file name
@@ -785,8 +808,8 @@
                                     echo "</br><h4 class=\"handle\" name=".$filename.">Hard Drive #2 [/dev/sdb] </h4>";
                                 }
                             }
-                            //This special case is for sorinXX that has more than 2 drives
-                            if($j==3 and ($i==3 || $i==9 ||  $i==10 || $i==11 || $i==12))
+                            //This special case is for sorinXX that has more than 2 drives ($i==3 || $i==9 ||  $i==10 || $i==11 || $i==12) 
+                            if($j==3 and in_array($i,$desktops_with_3_drives))
                             {
                                 // Sorin9's third drive is called sdb
                                 if($i==9)
@@ -945,7 +968,7 @@
                                 }    
                             } //End of the if($j<=2)
                             //This case statement is used to display sorin12 SMARTctl sdc drive.Modify it if more machines have 3 drives
-                            if($j==3 && ($i==3 || $i==9 ||  $i==10 || $i==11 || $i==12))
+                            if($j==3 && in_array($i,$desktops_with_3_drives))
                             {
                                 //Check if the file exists
                                 if(file_exists($filename))
