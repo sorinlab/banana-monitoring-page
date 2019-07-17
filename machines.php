@@ -1118,7 +1118,10 @@
                         if(file_exists($informationFilename))
                         {   
                             echo "<br>";
-                            echo "<h4>Space Used</h4>";
+                            echo "<h4>
+                            
+                            
+                            </h4>";
 
                             $fh=file($informationFilename,FILE_IGNORE_NEW_LINES|FILE_SKIP_EMPTY_LINES);
                             //Process each line in the file
