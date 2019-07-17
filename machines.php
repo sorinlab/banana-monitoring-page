@@ -580,8 +580,8 @@
                 <h2> DESKTOPS </h2>
                 <?php
                     
-                    $offline_desktops = array(5,8);
-                    $desktops_with_3_drives = array(3,9,10,11,12);
+                    $offline_desktops = array(1,3,8);
+                    $desktops_with_3_drives = array(9,10,11,12);
 
                     for($i=1;$i<=13;$i++)
                     {                        
