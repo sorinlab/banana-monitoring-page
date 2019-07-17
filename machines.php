@@ -6,7 +6,6 @@
  * smartctl output of all servers & desktops.
  * EDITED ON: 10/24/16 BY XAVIER MARTINEZ (Added recognition of entropy1's Virtual Disk)
  */
-
 /* Please don't edit this file through "nano" or "vim" due to format error.
  *      Instead use VS code or other code editor for format consistency.
  * TESTING ABI BRANCH!
@@ -91,13 +90,11 @@
                     xmlhttp.open("GET",filename,true);
                     xmlhttp.send();
                 }//End of getFileContents() method
-
                 //When we click on the dialog overlay div disappears
                 document.getElementById("dialog_overlay").onclick = function(){
                     dialogOverlay.style.display = 'none';
                     slideSource.style.display = 'none';
                 }
-
                 //On press of escape key close the div
                 document.onkeydown = function(evt) {
                     evt = evt || window.event;
@@ -138,10 +135,8 @@
                     // Initially set the smartEnabled to false.
                     // This value remains zero for the machines on which smartctl is not enabled
                     $smartEnabledDisks = 0;
-
                     // Creating a Switch for information.txt (for users, uptime, and space available)
                     $informationSwitch = 0;
-
                     //Create a new div
                     echo "<div class=\"machine\">";
                     //Set div headers and attach smartctl data (if smart support is enabled)
@@ -535,12 +530,10 @@
                         {   
                             echo "<br>";
                             echo "<h4>Space Used</h4>";
-
                             $fh=file($informationFilename,FILE_IGNORE_NEW_LINES|FILE_SKIP_EMPTY_LINES);
                             //Process each line in the file
                             foreach($fh as $line)
                             {
-
                                 if(strpos($line,"Filesystem")!==FALSE) echo "<li><pre>".$line."</pre></li>";
                                 
                                 if(strpos($line,'/dev/md')!==FALSE)
@@ -560,9 +553,7 @@
                                     else {
                                         echo "<li><pre>".$line."</pre></li>";
                                     }
-
                                 }
-
                                 if(strpos($line,"up ")!==FALSE)
                                 {
                                     echo "<br><h4> Uptime:</h4><li class='active'>".$line."</li>";
@@ -580,9 +571,8 @@
                 <h2> DESKTOPS </h2>
                 <?php
                     
-                    $offline_desktops = array(1,3,8);
-                    $desktops_with_3_drives = array(9,10,11,12);
-
+                    $offline_desktops = array(5,8);
+                    $desktops_with_3_drives = array(3,9,10,11,12);
                     for($i=1;$i<=13;$i++)
                     {                        
                         //Generate the file name
@@ -621,12 +611,10 @@
                                     echo "<h4>Users</h4>";
                                     echo "<li>".$new_line."</li>";
                                     echo "<br>";
-
                                     continue;
                                 }     
                             }   
                         }    
-
                         //Check if the file exists
                         if(file_exists($filename))
                         {
@@ -1119,28 +1107,21 @@
                         {   
                             echo "<br>";
                             echo "<h4>Space Used</h4>";
-
                             $fh=file($informationFilename,FILE_IGNORE_NEW_LINES|FILE_SKIP_EMPTY_LINES);
                             //Process each line in the file
                             foreach($fh as $line)
                             {
-
-                                if(strpos($line,"Filesystem")!==FALSE || strpos($line,'/dev/md')!==FALSE || strpos($line,'/dev/sd')!==FALSE)
+                                if(strpos($line,"Filesystem")!==FALSE || strpos($line,'/dev/md')!==FALSE)
                                 {
                                     
                                     echo "<li><pre>".$line."</pre></li>";
-
                                 }
-
                                 if(strpos($line,"up ")!==FALSE)
                                 {
                                     echo "<br><h4> Uptime:</h4><li class='active'>".$line."</li>";
                                 }
-
-
                             }
                         }
-
                         echo "</ul>"; //End of machine info
                         echo "</div>"; // End of Div
                     } // End of for-loop ($i=1;$i<=13;$i++)
