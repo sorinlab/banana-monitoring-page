@@ -571,8 +571,8 @@
                 <h2> DESKTOPS </h2>
                 <?php
                     
-                    $offline_desktops = array(5,8);
-                    $desktops_with_3_drives = array(3,9,10,11,12);
+                    $offline_desktops = array(1,3,8);
+                    $desktops_with_3_drives = array(9,10,11,12);
                     for($i=1;$i<=13;$i++)
                     {                        
                         //Generate the file name
@@ -1111,7 +1111,7 @@
                             //Process each line in the file
                             foreach($fh as $line)
                             {
-                                if(strpos($line,"Filesystem")!==FALSE || strpos($line,'/dev/md')!==FALSE)
+                                if(strpos($line,"Filesystem")!==FALSE || strpos($line,'/dev/md')!==FALSE || strpos($line,'/dev/sd')!==FALSE)
                                 {
                                     
                                     echo "<li><pre>".$line."</pre></li>";
