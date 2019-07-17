@@ -1118,17 +1118,14 @@
                         if(file_exists($informationFilename))
                         {   
                             echo "<br>";
-                            echo "<h4>
-                            
-                            
-                            </h4>";
+                            echo "<h4>Space Used</h4>";
 
                             $fh=file($informationFilename,FILE_IGNORE_NEW_LINES|FILE_SKIP_EMPTY_LINES);
                             //Process each line in the file
                             foreach($fh as $line)
                             {
 
-                                if(strpos($line,"Filesystem")!==FALSE || strpos($line,'/dev/md')!==FALSE)
+                                if(strpos($line,"Filesystem")!==FALSE || strpos($line,'/dev/md')!==FALSE || strpos($line,'/dev/sd')!==FALSE)
                                 {
                                     
                                     echo "<li><pre>".$line."</pre></li>";
