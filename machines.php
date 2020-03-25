@@ -224,6 +224,7 @@
                     }
                     //Generate list of required output
                     echo "<ul class=\"machineInfo\">";
+
                     //Check if the file exists on the server
                     if (file_exists($name)) 
                     {
@@ -242,9 +243,11 @@
                                 echo "<li class=\"error\"> Last Updated : ".date("F d Y H:i:s",filemtime($name))."</li>";
                             }
                         }
+                        
                         foreach ($fh as $line) 
                         {
                             //Make the md device as header and attach a file handle to it
+
                             if (strpos($line,"/dev/md") !== FALSE )
                             {
                                 echo "<h4 class=\"handle\" name=".$name.">".$line."</h4>";
@@ -571,8 +574,9 @@
                 <h2> DESKTOPS </h2>
                 <?php
                     
-                    $offline_desktops = array(1,3,8);
+                    $offline_desktops = array(8);
                     $desktops_with_3_drives = array(9,10,11,12);
+                    $desktops_with_4_drives = array(11);
                     for($i=1;$i<=13;$i++)
                     {                        
                         //Generate the file name
@@ -612,9 +616,17 @@
                                     echo "<li>".$new_line."</li>";
                                     echo "<br>";
                                     continue;
-                                }     
+                                }
+                                    //  Added by Justin
+                                if(strpos($line,"IP Address")!==FALSE)
+                                {
+                                    echo "<li>".$line."</li>";
+                                    echo "<br>";
+                                    continue;
+                                }    
                             }   
                         }    
+
                         //Check if the file exists
                         if(file_exists($filename))
                         {
@@ -773,7 +785,7 @@
                         echo "<br/>";
                         //Parse the smartctl output for eachmachine and then print relevant details
                         //Execute the loop twice since we have 2 disks on each of the sorinx machines
-                        for($j=1;$j<=3;$j++)
+                        for($j=1;$j<=4;$j++)
                         {
                             $shortOffline=0; $extendedOffline=0; $avgCount=0; 
                             $totalLifeTime=0;$errorsLogged=true;$errorCount=0;$smartSupport=true;
@@ -796,7 +808,7 @@
                                     echo "</br><h4 class=\"handle\" name=".$filename.">Hard Drive #2 [/dev/sdb] </h4>";
                                 }
                             }
-                            //This special case is for sorinXX that has more than 2 drives ($i==3 || $i==9 ||  $i==10 || $i==11 || $i==12) 
+                            //This special case is for sorinXX that has 3 drives
                             if($j==3 and in_array($i,$desktops_with_3_drives))
                             {
                                 // Sorin9's third drive is called sdb
@@ -810,6 +822,12 @@
                                     $filename = "smartctl/sorin".$i."-sdc.txt";
                                     echo "</br><h4 class=\"handle\" name=".$filename.">Hard Drive #3 [/dev/sdc] </h4>";
                                 }
+                            } //End of 3rd drive section
+                            //This special case is for sorinXX that has 4 drives 
+                            if($j==4 and in_array($i,$desktops_with_4_drives))
+                            {
+                                $filename = "smartctl/sorin".$i."-sdd.txt";
+                                echo "</br><h4 class=\"handle\" name=".$filename.">Hard Drive #4 [/dev/sdd] </h4>";
                             } //End of Special Case section (j==3 and i==12)
                             //$j is less than or equal to 2 because most of the sorinX machines have 2 drives.Sorin11 and 12 have 3
                             if($j<=2)
