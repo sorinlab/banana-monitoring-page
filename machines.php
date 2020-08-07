@@ -17,15 +17,15 @@
         <title>Sorin Lab: Machines</title>
         <link rel="stylesheet" href="labstyle.css" type="text/css"/>
         <script>
-            window.onload = function findCriticalElements() 
+            window.onload = function findCriticalElements()
             {
                 var criticalElements = document.getElementsByClassName('critical');
-                if (criticalElements.length === 1) 
+                if (criticalElements.length === 1)
                 {
                     document.getElementById("criticalMessage").innerHTML = " &#9733; 1 Action Item &#9733;";
                     document.getElementById("criticalMessage").style.display = "block";
                 }
-                if (criticalElements.length > 1) 
+                if (criticalElements.length > 1)
                 {
                     document.getElementById("criticalMessage").innerHTML = "&#9733; "+criticalElements.length+" Action Items &#9733;";
                     document.getElementById("criticalMessage").style.display = "block";
@@ -38,9 +38,9 @@
                 var fileHandlers = document.getElementsByClassName("handle");
                 for(var i = 0; i < fileHandlers.length; i++)
                 {
-                    fileHandlers[i].addEventListener('click',(function(i) 
+                    fileHandlers[i].addEventListener('click',(function(i)
                     {
-                        return function() 
+                        return function()
                         {
                             var filename = fileHandlers[i].getAttribute("name");
                             getFileContents(filename);
@@ -48,7 +48,7 @@
                     })(i), false);
                 }
                 //Call back function that displays the content of the files on
-                function getFileContents(filename) 
+                function getFileContents(filename)
                 {
                     displayHeader.innerHTML = filename.slice(0,-4);
                     dialogOverlay.style.display ='block';
@@ -65,7 +65,7 @@
                     {
                         xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
                     }
-                    xmlhttp.onreadystatechange = function() 
+                    xmlhttp.onreadystatechange = function()
                     {
                         //If the AJAX request is succesful display the file contents
                         if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
@@ -119,7 +119,7 @@
                 </ul>
             </div> <!-- End of div header -->
             <!-- Critical elements alert -->
-            <span id="criticalMessage" style="display:none;"> 
+            <span id="criticalMessage" style="display:none;">
             </span>
             <div id="servers">
                 <h2> SERVERS </h2>
@@ -128,7 +128,7 @@
                 // To add a new server add the new file names here
                 $filenames = array('banana-OSRaid.txt','banana-DataRaid.txt','storage1-OS.txt','storage1-Data.txt','entropy1-OS.txt', 'entropy1-DATA.txt', 'folding1.txt','folding2.txt');
                 //Process each file in the array one by one
-                foreach ($filenames as $name) 
+                foreach ($filenames as $name)
                 {
                     $MNAME = "NOTBANANA";
                     $OS_DATA = "N/A";
@@ -140,7 +140,7 @@
                     //Create a new div
                     echo "<div class=\"machine\">";
                     //Set div headers and attach smartctl data (if smart support is enabled)
-                    if (strpos($name,"banana-OS") !== FALSE) 
+                    if (strpos($name,"banana-OS") !== FALSE)
                     {
                         echo "<h3 class=\"machineName\">banana OS RAID</h3>";
                         $smartfile1 = "smartctl/banana-sda.txt"; $smartdisk1 = "/dev/sda";
@@ -150,7 +150,7 @@
                         $OS_DATA = "OS";
                         $informationSwitch = 1;
                     }
-                    if (strpos($name,"banana-Data") !== FALSE) 
+                    if (strpos($name,"banana-Data") !== FALSE)
                     {
                         echo "<h3 class=\"machineName\">banana Data RAID</h3>";
                         $smartfile1 = "smartctl/banana-sdc.txt"; $smartdisk1 = "/dev/sdc";
@@ -160,7 +160,7 @@
                         $OS_DATA = "DATA";
                         $informationSwitch = 1;
                     }
-                    if (strpos($name,"entropy1-OS") !== FALSE) 
+                    if (strpos($name,"entropy1-OS") !== FALSE)
                     {
                         echo "<h3 class=\"machineName\">entropy1 OS RAID</h3>";
                         $smartfile1 = "smartctl/entropy1-sda.txt"; $smartdisk1 = "/dev/sda";
@@ -170,7 +170,7 @@
                         $OS_DATA = "OS";
                         $informationSwitch = 1;
                     }
-                    if (strpos($name,"entropy1-DATA") !== FALSE) 
+                    if (strpos($name,"entropy1-DATA") !== FALSE)
                     {
                         echo "<h3 class=\"machineName\">entropy1 Data RAID</h3>";
                         $smartfile1 = "smartctl/entropy1-sdg.txt"; $smartdisk1 = "/dev/sdg";
@@ -191,7 +191,7 @@
                         $MNAME = "folding1";
                         $informationSwitch = 1;
                     }
-                    if (strpos($name,"folding2") !== FALSE) 
+                    if (strpos($name,"folding2") !== FALSE)
                     {
                         echo "<h3 class=\"machineName\">folding2</h3>";
                         $smartfile1 = "smartctl/folding2-sda.txt"; $smartdisk1 = "/dev/sda";
@@ -201,8 +201,8 @@
                         $smartEnabledDisks = 4;
                         $MNAME = "folding2";
                         $informationSwitch = 1;
-                    } 
-                    if(strpos($name,"storage1-OS") !== FALSE) 
+                    }
+                    if(strpos($name,"storage1-OS") !== FALSE)
                     {
                         echo "<h3 class=\"machineName\">storage1 OS RAID</h3>";
                         $smartfile1 = "smartctl/storage1-sdg.txt"; $smartdisk1 = "/dev/sdg";
@@ -212,7 +212,7 @@
                         $OS_DATA = "OS";
                         $informationSwitch = 1;
                     }
-                    if (strpos($name,"storage1-Data") !== FALSE) 
+                    if (strpos($name,"storage1-Data") !== FALSE)
                     {
                         echo "<h3 class=\"machineName\">storage1 Data RAID</h3>";
                         $smartfile1 = "smartctl/storage1-sde.txt"; $smartdisk1 = "/dev/sde";
@@ -226,25 +226,25 @@
                     echo "<ul class=\"machineInfo\">";
 
                     //Check if the file exists on the server
-                    if (file_exists($name)) 
+                    if (file_exists($name))
                     {
                         $fh = file($name, FILE_IGNORE_NEW_LINES|FILE_SKIP_EMPTY_LINES);
-                        if ($name === 'perutz.txt' || $name === 'folding1-raidstat.txt' || $name === 'folding2-raidstat.txt') 
+                        if ($name === 'perutz.txt' || $name === 'folding1-raidstat.txt' || $name === 'folding2-raidstat.txt')
                         {
                             $lastModified = filemtime($name);
                             $now = time();
                             $timediff = $now - $lastModified;
-                            if ($timediff < 129600) 
+                            if ($timediff < 129600)
                             {
                                 echo "<li class=\"active\"> Last Updated : ".date("F d Y H:i:s",filemtime($name))."</li>";
                             }
-                            else 
+                            else
                             {
                                 echo "<li class=\"error\"> Last Updated : ".date("F d Y H:i:s",filemtime($name))."</li>";
                             }
                         }
-                        
-                        foreach ($fh as $line) 
+
+                        foreach ($fh as $line)
                         {
                             //Make the md device as header and attach a file handle to it
 
@@ -253,7 +253,7 @@
                                 echo "<h4 class=\"handle\" name=".$name.">".$line."</h4>";
                                 continue;
                             }
-                            if(strpos($line,"Update Time") !==FALSE || strpos($line,"Generated On") !==FALSE) 
+                            if(strpos($line,"Update Time") !==FALSE || strpos($line,"Generated On") !==FALSE)
                             {
                                 //Extract the update time from the line
                                 if(strpos($line,"Update Time") !==FALSE)
@@ -271,7 +271,7 @@
                                 //Compute the difference
                                 $timediff = $now - $updatetime;
                                 //If the difference is more than 36 hr (1 week = 604800 sec)
-                                if($timediff > 129600) 
+                                if($timediff > 129600)
                                 {
                                     if(strpos($line,"Update Time") !==FALSE)
                                     {
@@ -281,21 +281,21 @@
                                     {
                                         echo "<li class=\"error\">".$timediff."</li>";
                                     }
-                                } 
-                                else 
+                                }
+                                else
                                 {
                                     echo "<li class=\"active\">".$line."</li>";
                                 }
                                 continue;
                             }
-                            if (strpos($line,"Failed Devices")!==FALSE) 
+                            if (strpos($line,"Failed Devices")!==FALSE)
                             {
                                 $failed_devices = intval(preg_replace('/Failed Devices : /', '',$line));
-                                if ($failed_devices > 0) 
+                                if ($failed_devices > 0)
                                 {
                                     echo "<li class=\"error\">".$line."</li>";
                                 }
-                                else 
+                                else
                                 {
                                     echo "<li>".$line."</li>";
                                 }
@@ -324,10 +324,10 @@
                             if(strpos($line,"State") !==FALSE)
                             {
                                 //check if the state is clean or active else display an error
-                                if(strpos($line,"clean")!==FALSE || strpos($line,"active")!==FALSE || strpos($line,"Online")!==FALSE) 
+                                if(strpos($line,"clean")!==FALSE || strpos($line,"active")!==FALSE || strpos($line,"Online")!==FALSE)
                                 {
                                     //Further check to see if the line contains inactive, degraded, idle
-                                    if(strpos($line,"inactive")!==FALSE || strpos($line,"degraded")!==FALSE || strpos($line,"idle")!==FALSE) 
+                                    if(strpos($line,"inactive")!==FALSE || strpos($line,"degraded")!==FALSE || strpos($line,"idle")!==FALSE)
                                     {
                                         echo "<li class=\"error\">".$line."</li>";
                                     }
@@ -336,21 +336,21 @@
                                         echo "<li class=\"active\">".$line."</li>";
                                     }
                                 }
-                                else 
+                                else
                                 {
                                     echo "<li class=\"error\">".$line."</li>";
                                 }
                                 continue;
                             }
                             //Code for others
-                            if  (strpos($line,"Array Size")!==FALSE || strpos($line,"Active Devices")!==FALSE || strpos($line,"Working Devices")!==FALSE || strpos($line,"Controller")!==FALSE || strpos($line,"Disk Space")!==FALSE) 
+                            if  (strpos($line,"Array Size")!==FALSE || strpos($line,"Active Devices")!==FALSE || strpos($line,"Working Devices")!==FALSE || strpos($line,"Controller")!==FALSE || strpos($line,"Disk Space")!==FALSE)
                             {
                                 echo "<li>".$line."</li>";
                             }
                         } // End of file processing
                     } //End of file_exists
                     //If the specified file doesn't exist, display error
-                    else 
+                    else
                     {
                         echo "<li class=\"error\"> File Not Found </li>";
                     }
@@ -358,9 +358,9 @@
                     // Parse the smartctl output for each machine and then print relevant details.
                     // For the machines on which smart support is not enabled the value remains zero.
                     // Else process the output based on the number of disks available on the machine.
-                    if ($smartEnabledDisks > 0) 
+                    if ($smartEnabledDisks > 0)
                     {
-                        for ($j = 1; $j <= $smartEnabledDisks; $j++) 
+                        for ($j = 1; $j <= $smartEnabledDisks; $j++)
                         {
                             $shortOffline = 0;
                             $extendedOffline = 0;
@@ -376,7 +376,7 @@
                             //Extract the contents of the file
                             $fh=file($filename,FILE_IGNORE_NEW_LINES|FILE_SKIP_EMPTY_LINES);
                             //Process each line in the file
-                            foreach($fh as $line) 
+                            foreach($fh as $line)
                             {
                                 //Check if smart support is configured on the disk
                                 if(strpos($line,"SMART support is:")!==FALSE)
@@ -389,12 +389,12 @@
                                     }
                                 }
                                 // Added "Errors Corrected" in the case that there is no errors logged
-                                if (strpos($line,"No Errors Logged")!==FALSE || strpos($line, "Errors Corrected")!==FALSE) 
+                                if (strpos($line,"No Errors Logged")!==FALSE || strpos($line, "Errors Corrected")!==FALSE)
                                 {
                                     $errorsLogged=false;
                                 }
                                 //If there are any errors logged, count the number of errors
-                                if(strpos($line,"Error")!==FALSE) 
+                                if(strpos($line,"Error")!==FALSE)
                                 {
                                     if(strpos($line,"occurred at disk power-on lifetime")!==FALSE)
                                     {
@@ -415,7 +415,7 @@
                                     {
                                         echo "<li class=\"error\">".$line."</li>";
                                     }
-                                    else 
+                                    else
                                     {
                                         echo "<li class=\"active\">".$line."</li>";
                                     }
@@ -438,11 +438,11 @@
                                 * The type of the attribute: old_age vs pre_fail
                                 * Either “Pre-fail” for attributes indicate impending failure
                                         “Old_age” for attributes that just indicate wear and tear.
-                                * Note that one and the same attribute can be classified as “Pre-fail” by one 
+                                * Note that one and the same attribute can be classified as “Pre-fail” by one
                                         manufacturer or for one model and as “Old_age” by another or for another model.
-                                * Each Attribute also has a Threshold value (whose range is 0 to 255) which is printed 
+                                * Each Attribute also has a Threshold value (whose range is 0 to 255) which is printed
                                         under the heading "THRESH".
-                                * If the Normalized value is less than or equal to the Threshold value, then the 
+                                * If the Normalized value is less than or equal to the Threshold value, then the
                                         attribute is said to have failed.
                                 * If the Attribute is a pre-failure Attribute, then disk failure is imminent.
                                 */
@@ -466,10 +466,10 @@
                                 }
                                 //Now compute the average life time of the disk
                                 //By considering latest 4 short offline & 4 extended offline lifetime values and computing an average
-                                if (strpos($line,"Short offline")!==FALSE && strpos($line,"Completed without error")!==FALSE && $shortOffline < 4) 
+                                if (strpos($line,"Short offline")!==FALSE && strpos($line,"Completed without error")!==FALSE && $shortOffline < 4)
                                 {
                                     $shortOffline++;
-                                    if (preg_match_all('!\d+!', $line, $matches)) 
+                                    if (preg_match_all('!\d+!', $line, $matches))
                                     {
                                         if(isset($matches[0][2]))
                                         {
@@ -482,10 +482,10 @@
                                     }
                                     continue;
                                 }
-                                if (strpos($line,"Extended offline")!==FALSE && strpos($line,"Completed without error")!==FALSE && $extendedOffline < 4) 
+                                if (strpos($line,"Extended offline")!==FALSE && strpos($line,"Completed without error")!==FALSE && $extendedOffline < 4)
                                 {
                                     $extendedOffline++;
-                                    if (preg_match_all('!\d+!', $line, $matches)) 
+                                    if (preg_match_all('!\d+!', $line, $matches))
                                     {
                                         if(isset($matches[0][2]))
                                         {
@@ -524,13 +524,13 @@
                             }
                         } //End of for-loop with $smartEnabledDisks
                     }//End of If smartEnabledDisks
-                    
+
                     #Grabbing the essential information of each server
                     if($informationSwitch == 1)
                     {
                         $informationFilename = $MNAME."_information.txt";
                         if(file_exists($informationFilename))
-                        {   
+                        {
                             echo "<br>";
                             echo "<h4>Space Used</h4>";
                             $fh=file($informationFilename,FILE_IGNORE_NEW_LINES|FILE_SKIP_EMPTY_LINES);
@@ -538,19 +538,19 @@
                             foreach($fh as $line)
                             {
                                 if(strpos($line,"Filesystem")!==FALSE) echo "<li><pre>".$line."</pre></li>";
-                                
+
                                 if(strpos($line,'/dev/md')!==FALSE)
                                 {
                                     if($OS_DATA == "OS") {
-                                        if(strpos($line,"md127")!==FALSE) {    
+                                        if(strpos($line,"md127")!==FALSE) {
                                         }
                                         else {
                                             echo "<li><pre>".$line."</pre></li>";
                                         }
-                                    }   
+                                    }
                                     else if($OS_DATA == "DATA") {
                                         if(strpos($line,"md127")!==FALSE) {
-                                            echo "<li><pre>".$line."</pre></li>";    
+                                            echo "<li><pre>".$line."</pre></li>";
                                         }
                                     }
                                     else {
@@ -573,42 +573,42 @@
             <div id="desktops">
                 <h2> DESKTOPS </h2>
                 <?php
-                    
-                    $offline_desktops = array(8);
+
+                    $offline_desktops = array();
                     $desktops_with_3_drives = array(9,10,11,12);
-                    $desktops_with_4_drives = array(11);
+                    $desktops_with_4_drives = array();
                     for($i=1;$i<=13;$i++)
-                    {                        
+                    {
                         //Generate the file name
                         $filename = "sorin".$i.".txt";
                         //Create the div for each machine
                         echo "<div class=\"machine\">";
                         echo "<h3 class=\"machineName\">"."sorin".$i."</h3>";
                         echo "<ul class=\"machineInfo\">";
-                        
+
                         //If desktop is currently down trigger echo & continue
                         if (in_array($i, $offline_desktops)) {
                             echo "HOSTNAME NOT CURRENTLY IN USE";
                             echo "</ul>"; //End of..
                             echo "</div>"; // End of Div
                             continue;
-                        }                 
-                                                                       
+                        }
+
                         //Displaying users of each desktop
                         $informationFilename = "sorin".$i."_information.txt";
                         if(file_exists($informationFilename))
-                        {   
-                            
+                        {
+
                             $fh=file($informationFilename,FILE_IGNORE_NEW_LINES|FILE_SKIP_EMPTY_LINES);
                             //Process each line in the file
                             foreach($fh as $line)
                             {
                                 if(strpos($line,"Current")!==FALSE)
                                 {
-                                    
+
                                     $replacing = ["Current", "users:", ",", "server"];
                                     //$replacing = ["server"];
-                                    
+
                                     //$replace_with = [""];
                                     $replace_with = ["", "", "", ""];
                                     $new_line = str_replace($replacing, $replace_with, $line);
@@ -623,9 +623,9 @@
                                     echo "<li>".$line."</li>";
                                     echo "<br>";
                                     continue;
-                                }    
-                            }   
-                        }    
+                                }
+                            }
+                        }
 
                         //Check if the file exists
                         if(file_exists($filename))
@@ -678,7 +678,7 @@
                                         $nameTemp = substr($filename, 0, $length - 4);
                                         $pingReturn = 0;
                                         $pingOutput = exec("ping $nameTemp -c 2 -W 1", $pingTemp, $pingReturn);
-                                        if ($pingReturn != 0) 
+                                        if ($pingReturn != 0)
                                         {
                                             // echo "<script> alert('" . $nameTemp . " is Unpingable!!!'); </script>";
                                             echo "<li style=\"font-size: 20pt;\" class=\"error\"> SYSTEM IS UNPINGABLE!!! </li>";
@@ -733,7 +733,7 @@
                                 {
                                     echo "<li><pre>".$line."</pre></li>";
                                     continue;
-                                } 
+                                }
                                 //Add dev/sdXX here for new drives. So the page lines up all harddrives
                                 if  (   strpos($line,"dev/sda1")!==FALSE ||
                                         strpos($line,"dev/sdb1")!==FALSE ||
@@ -773,7 +773,7 @@
                                     else
                                     {
                                         echo "<li class=\"error\">".$line."</li>";
-                                    } 
+                                    }
                                 }
                             } //End of line in file for-loop
                         } //End of file_exists
@@ -787,7 +787,7 @@
                         //Execute the loop twice since we have 2 disks on each of the sorinx machines
                         for($j=1;$j<=4;$j++)
                         {
-                            $shortOffline=0; $extendedOffline=0; $avgCount=0; 
+                            $shortOffline=0; $extendedOffline=0; $avgCount=0;
                             $totalLifeTime=0;$errorsLogged=true;$errorCount=0;$smartSupport=true;
                             if($j==1)
                             {
@@ -823,7 +823,7 @@
                                     echo "</br><h4 class=\"handle\" name=".$filename.">Hard Drive #3 [/dev/sdc] </h4>";
                                 }
                             } //End of 3rd drive section
-                            //This special case is for sorinXX that has 4 drives 
+                            //This special case is for sorinXX that has 4 drives
                             if($j==4 and in_array($i,$desktops_with_4_drives))
                             {
                                 $filename = "smartctl/sorin".$i."-sdd.txt";
@@ -917,7 +917,7 @@
                                         if(strpos($line,"Short offline")!==FALSE && strpos($line,"Completed without error")!==FALSE && $shortOffline < 4)
                                         {
                                             $shortOffline++;
-                                            if (preg_match_all('!\d+!', $line, $matches)) 
+                                            if (preg_match_all('!\d+!', $line, $matches))
                                             {
                                                 if(isset($matches[0][2]))
                                                 {
@@ -929,11 +929,11 @@
                                                 }
                                             }
                                             continue;
-                                        }     
+                                        }
                                         if(strpos($line,"Extended offline")!==FALSE && strpos($line,"Completed without error")!==FALSE && $extendedOffline < 4)
                                         {
                                             $extendedOffline++;
-                                            if (preg_match_all('!\d+!', $line, $matches)) 
+                                            if (preg_match_all('!\d+!', $line, $matches))
                                             {
                                                 if(isset($matches[0][2]))
                                                 {
@@ -971,7 +971,7 @@
                                 else
                                 {
                                     echo "<li class=\"error\"> File Not Found </li>";
-                                }    
+                                }
                             } //End of the if($j<=2)
                             //This case statement is used to display sorin12 SMARTctl sdc drive.Modify it if more machines have 3 drives
                             if($j==3 && in_array($i,$desktops_with_3_drives))
@@ -1061,7 +1061,7 @@
                                         if(strpos($line,"Short offline")!==FALSE && strpos($line,"Completed without error")!==FALSE && $shortOffline < 4)
                                         {
                                             $shortOffline++;
-                                            if (preg_match_all('!\d+!', $line, $matches)) 
+                                            if (preg_match_all('!\d+!', $line, $matches))
                                             {
                                                 if(isset($matches[0][2]))
                                                 {
@@ -1077,7 +1077,7 @@
                                         if(strpos($line,"Extended offline")!==FALSE && strpos($line,"Completed without error")!==FALSE && $extendedOffline < 4)
                                         {
                                             $extendedOffline++;
-                                            if (preg_match_all('!\d+!', $line, $matches)) 
+                                            if (preg_match_all('!\d+!', $line, $matches))
                                             {
                                                 if(isset($matches[0][2]))
                                                 {
@@ -1117,12 +1117,12 @@
                                     echo "<li class=\"error\"> File Not Found </li>";
                                 }
                             } //End of if($i==3 || $i==9 ||  $i==10 ||$i==11 || $i==12)
-                        } //End of for($j=1;$j<=3;$j++), for 2 disks on each sorinX machines 
-                        
+                        } //End of for($j=1;$j<=3;$j++), for 2 disks on each sorinX machines
+
                         #Grabbing the uptime & df -h of each desktop
                         $informationFilename = "sorin".$i."_information.txt";
                         if(file_exists($informationFilename))
-                        {   
+                        {
                             echo "<br>";
                             echo "<h4>Space Used</h4>";
                             $fh=file($informationFilename,FILE_IGNORE_NEW_LINES|FILE_SKIP_EMPTY_LINES);
@@ -1131,7 +1131,7 @@
                             {
                                 if(strpos($line,"Filesystem")!==FALSE || strpos($line,'/dev/md')!==FALSE || strpos($line,'/dev/sd')!==FALSE)
                                 {
-                                    
+
                                     echo "<li><pre>".$line."</pre></li>";
                                 }
                                 if(strpos($line,"up ")!==FALSE)
@@ -1146,11 +1146,11 @@
                 ?>
             </div> <!-- End of div for Desktops -->
             <!-- Overlay Div -->
-            <div id="dialog_overlay" style="display:none"> 
+            <div id="dialog_overlay" style="display:none">
             </div>
             <!-- The div for displaying the file contents -->
             <div id="slideSource" style="display:none;">
-                <div id="fileDisplayHeader"> 
+                <div id="fileDisplayHeader">
                 </div>
                 <div id="fileContent">
                 </div>
@@ -1159,5 +1159,5 @@
                 <h4> Copyright &copy; Sorin Lab 2014</h4>
             </div>
         </div>
-    </body> 
+    </body>
 </html>
