@@ -575,7 +575,8 @@
                 <?php
 
                     $offline_desktops = array();
-                    $desktops_with_3_drives = array(9,10,11,12);
+                    $desktops_with_1_drive = array(8,12);
+                    $desktops_with_3_drives = array(9,10,11);
                     $desktops_with_4_drives = array();
                     for($i=1;$i<=13;$i++)
                     {
@@ -600,7 +601,7 @@
                         {
 
                             $fh=file($informationFilename,FILE_IGNORE_NEW_LINES|FILE_SKIP_EMPTY_LINES);
-                            //Process each line in the file
+                            //Process each line in the sorinX_information.txt file)
                             foreach($fh as $line)
                             {
                                 if(strpos($line,"Current")!==FALSE)
@@ -626,165 +627,168 @@
                                 }
                             }
                         }
-
-                        //Check if the file exists
-                        if(file_exists($filename))
-                        {
-                            $fh=file($filename,FILE_IGNORE_NEW_LINES|FILE_SKIP_EMPTY_LINES);
-                            foreach ($fh as $line)
+                        // If we only have 1 drive, then disregard this block as it pretains to raid array
+                        if(!in_array($i,$desktops_with_1_drive)) {
+                            //Check if the file exists
+                            if(file_exists($filename))
                             {
-                                if(strpos($line,"Array Size")!==FALSE)
+                                $fh=file($filename,FILE_IGNORE_NEW_LINES|FILE_SKIP_EMPTY_LINES);
+                                foreach ($fh as $line)
                                 {
-                                    echo "<li>".$line."</li>";
-                                    continue;
-                                }
-                                //Print the device name
-                                if(strpos($line,"/dev/md")!== FALSE)
-                                {
-                                    echo "<h4 class=\"handle\" name=".$filename.">".$line."</h4>";
-                                    continue;
-                                }
-                                //Update Time and Generated On cannot be more than one day
-                                if(strpos($line,"Update Time") !==FALSE || strpos($line,"Generated On") !==FALSE)
-                                {
-                                    //Extract the update time from the line
-                                    if(strpos($line,"Update Time") !==FALSE)
+                                    if(strpos($line,"Array Size")!==FALSE)
                                     {
-                                        $date_string = preg_replace('/Update Time : /', '',$line);
+                                        echo "<li>".$line."</li>";
+                                        continue;
                                     }
-                                    if(strpos($line,"Generated On") !==FALSE)
+                                    //Print the device name
+                                    if(strpos($line,"/dev/md")!== FALSE)
                                     {
-                                        $date_string = preg_replace('/Generated On : /', '',$line);
+                                        echo "<h4 class=\"handle\" name=".$filename.">".$line."</h4>";
+                                        continue;
                                     }
-                                    // Convert the string to time in seconds
-                                    $updatetime = strtotime($date_string);
-                                    //Caliculate the present time
-                                    $now = time();
-                                    //Compute the difference
-                                    $timediff = $now - $updatetime;
-                                    //If the difference is more than 36 hrs
-                                    if($timediff > 129600)
+                                    //Update Time and Generated On cannot be more than one day
+                                    if(strpos($line,"Update Time") !==FALSE || strpos($line,"Generated On") !==FALSE)
                                     {
+                                        //Extract the update time from the line
                                         if(strpos($line,"Update Time") !==FALSE)
                                         {
-                                            echo "<li class=\"warning\">".$line."</li>";
+                                            $date_string = preg_replace('/Update Time : /', '',$line);
                                         }
                                         if(strpos($line,"Generated On") !==FALSE)
                                         {
-                                            echo "<li class=\"error\">".$line."</li>";
+                                            $date_string = preg_replace('/Generated On : /', '',$line);
                                         }
-                                        //This section is used to sent out an alert if any system is unpingable.
-                                        $length = strlen($filename);
-                                        $nameTemp = substr($filename, 0, $length - 4);
-                                        $pingReturn = 0;
-                                        $pingOutput = exec("ping $nameTemp -c 2 -W 1", $pingTemp, $pingReturn);
-                                        if ($pingReturn != 0)
+                                        // Convert the string to time in seconds
+                                        $updatetime = strtotime($date_string);
+                                        //Caliculate the present time
+                                        $now = time();
+                                        //Compute the difference
+                                        $timediff = $now - $updatetime;
+                                        //If the difference is more than 36 hrs
+                                        if($timediff > 129600)
                                         {
-                                            // echo "<script> alert('" . $nameTemp . " is Unpingable!!!'); </script>";
-                                            echo "<li style=\"font-size: 20pt;\" class=\"error\"> SYSTEM IS UNPINGABLE!!! </li>";
-                                        }
-                                    }
-                                    else
-                                    {
-                                        echo "<li class=\"active\">".$line."</li>";
-                                    }
-                                    continue;
-                                }
-                                //Code for identifying the state of RAID Array
-                                if(strpos($line,"State :") !==FALSE)
-                                {
-                                    //check if the state is clean or active else display an error
-                                    if(strpos($line,"clean")!==FALSE || strpos($line,"active")!==FALSE)
-                                    {
-                                        //Further check to see if the line contains inactive, degraded, idle
-                                        if(strpos($line,"inactive")!==FALSE || strpos($line,"degraded")!==FALSE || strpos($line,"idle")!==FALSE)
-                                        {
-                                            echo "<li class=\"error\">".$line."</li>";
+                                            if(strpos($line,"Update Time") !==FALSE)
+                                            {
+                                                echo "<li class=\"warning\">".$line."</li>";
+                                            }
+                                            if(strpos($line,"Generated On") !==FALSE)
+                                            {
+                                                echo "<li class=\"error\">".$line."</li>";
+                                            }
+                                            //This section is used to sent out an alert if any system is unpingable.
+                                            $length = strlen($filename);
+                                            $nameTemp = substr($filename, 0, $length - 4);
+                                            $pingReturn = 0;
+                                            $pingOutput = exec("ping $nameTemp -c 2 -W 1", $pingTemp, $pingReturn);
+                                            if ($pingReturn != 0)
+                                            {
+                                                // echo "<script> alert('" . $nameTemp . " is Unpingable!!!'); </script>";
+                                                echo "<li style=\"font-size: 20pt;\" class=\"error\"> SYSTEM IS UNPINGABLE!!! </li>";
+                                            }
                                         }
                                         else
                                         {
                                             echo "<li class=\"active\">".$line."</li>";
                                         }
+                                        continue;
                                     }
-                                    else
+                                    //Code for identifying the state of RAID Array
+                                    if(strpos($line,"State :") !==FALSE)
                                     {
-                                        echo "<li class=\"error\">".$line."</li>";
+                                        //check if the state is clean or active else display an error
+                                        if(strpos($line,"clean")!==FALSE || strpos($line,"active")!==FALSE)
+                                        {
+                                            //Further check to see if the line contains inactive, degraded, idle
+                                            if(strpos($line,"inactive")!==FALSE || strpos($line,"degraded")!==FALSE || strpos($line,"idle")!==FALSE)
+                                            {
+                                                echo "<li class=\"error\">".$line."</li>";
+                                            }
+                                            else
+                                            {
+                                                echo "<li class=\"active\">".$line."</li>";
+                                            }
+                                        }
+                                        else
+                                        {
+                                            echo "<li class=\"error\">".$line."</li>";
+                                        }
+                                        continue;
                                     }
-                                    continue;
-                                }
-                                if(strpos($line,"Active Devices")!==FALSE || strpos($line,"Working Devices")!==FALSE)
-                                {
-                                    echo "<li>".$line."</li>";
-                                }
-                                if(strpos($line,"Failed Devices")!==FALSE)
-                                {
-                                    $failed_devices = intval(preg_replace('/Failed Devices : /', '',$line));
-                                    if($failed_devices > 0)
-                                    {
-                                        echo "<li class=\"error\">".$line."</li>";
-                                    }
-                                    else
+                                    if(strpos($line,"Active Devices")!==FALSE || strpos($line,"Working Devices")!==FALSE)
                                     {
                                         echo "<li>".$line."</li>";
                                     }
-                                    continue;
-                                }
-                                if(strpos($line,"Major")!==FALSE)
-                                {
-                                    echo "<li><pre>".$line."</pre></li>";
-                                    continue;
-                                }
-                                //Add dev/sdXX here for new drives. So the page lines up all harddrives
-                                if  (   strpos($line,"dev/sda1")!==FALSE ||
-                                        strpos($line,"dev/sdb1")!==FALSE ||
-                                        strpos($line,"dev/sdc1")!==FALSE ||
-                                        strpos($line,"dev/sda2")!==FALSE ||
-                                        strpos($line,"dev/sdb2")!==FALSE ||
-                                        strpos($line,"dev/sdc2")!==FALSE ||
-                                        strpos($line,"dev/sda3")!==FALSE ||
-                                        strpos($line,"dev/sdb3")!==FALSE ||
-                                        strpos($line,"dev/sdc3")!==FALSE ||
-                                        strpos($line,"dev/sda4")!==FALSE ||
-                                        strpos($line,"dev/sdb4")!==FALSE ||
-                                        strpos($line,"dev/sdc4")!==FALSE ||
-                                        strpos($line,"dev/sda7")!==FALSE ||
-                                        strpos($line,"dev/sdb7")!==FALSE ||
-                                        strpos($line,"dev/sdc7")!==FALSE
-                                    )
-                                {
-                                    if(strpos($line,"active sync")!==false)
+                                    if(strpos($line,"Failed Devices")!==FALSE)
+                                    {
+                                        $failed_devices = intval(preg_replace('/Failed Devices : /', '',$line));
+                                        if($failed_devices > 0)
+                                        {
+                                            echo "<li class=\"error\">".$line."</li>";
+                                        }
+                                        else
+                                        {
+                                            echo "<li>".$line."</li>";
+                                        }
+                                        continue;
+                                    }
+                                    if(strpos($line,"Major")!==FALSE)
                                     {
                                         echo "<li><pre>".$line."</pre></li>";
+                                        continue;
                                     }
-                                    else
+                                    //Add dev/sdXX here for new drives. So the page lines up all harddrives
+                                    if  (   strpos($line,"dev/sda1")!==FALSE ||
+                                            strpos($line,"dev/sdb1")!==FALSE ||
+                                            strpos($line,"dev/sdc1")!==FALSE ||
+                                            strpos($line,"dev/sda2")!==FALSE ||
+                                            strpos($line,"dev/sdb2")!==FALSE ||
+                                            strpos($line,"dev/sdc2")!==FALSE ||
+                                            strpos($line,"dev/sda3")!==FALSE ||
+                                            strpos($line,"dev/sdb3")!==FALSE ||
+                                            strpos($line,"dev/sdc3")!==FALSE ||
+                                            strpos($line,"dev/sda4")!==FALSE ||
+                                            strpos($line,"dev/sdb4")!==FALSE ||
+                                            strpos($line,"dev/sdc4")!==FALSE ||
+                                            strpos($line,"dev/sda7")!==FALSE ||
+                                            strpos($line,"dev/sdb7")!==FALSE ||
+                                            strpos($line,"dev/sdc7")!==FALSE
+                                        )
                                     {
-                                        echo "<li class=\"error\"><pre>".$line."</pre></li>";
+                                        if(strpos($line,"active sync")!==false)
+                                        {
+                                            echo "<li><pre>".$line."</pre></li>";
+                                        }
+                                        else
+                                        {
+                                            echo "<li class=\"error\"><pre>".$line."</pre></li>";
+                                        }
+                                        continue;
                                     }
-                                    continue;
-                                }
-                                //This if execlusively for the output of sorin2.txt
-                                if(strpos($line,"dev/sd")!==FALSE)
-                                {
-                                    //Check if the device status is Ok or not else display error
-                                    if(strpos($line,"ok")!== false)
+                                    //This if execlusively for the output of sorin2.txt
+                                    if(strpos($line,"dev/sd")!==FALSE)
                                     {
-                                        echo "<li>".$line."</li>";
+                                        //Check if the device status is Ok or not else display error
+                                        if(strpos($line,"ok")!== false)
+                                        {
+                                            echo "<li>".$line."</li>";
+                                        }
+                                        else
+                                        {
+                                            echo "<li class=\"error\">".$line."</li>";
+                                        }
                                     }
-                                    else
-                                    {
-                                        echo "<li class=\"error\">".$line."</li>";
-                                    }
-                                }
-                            } //End of line in file for-loop
-                        } //End of file_exists
-                        //Display error if the file doesn't exist
-                        else
-                        {
-                            echo "<li class=\"error\"> File Not Found </li>";
+                                } //End of line in file for-loop
+                            } //End of file_exists
+                            //Display error if the file doesn't exist
+                            else
+                            {
+                                echo "<li class=\"error\"> File Not Found </li>";
+                            }
+                            echo "<br/>";
                         }
-                        echo "<br/>";
                         //Parse the smartctl output for eachmachine and then print relevant details
                         //Execute the loop twice since we have 2 disks on each of the sorinx machines
+                        //If a desktop only has 1 drive, then it will complete one iteration of the loop and break
                         for($j=1;$j<=4;$j++)
                         {
                             $shortOffline=0; $extendedOffline=0; $avgCount=0;
@@ -1117,6 +1121,10 @@
                                     echo "<li class=\"error\"> File Not Found </li>";
                                 }
                             } //End of if($i==3 || $i==9 ||  $i==10 ||$i==11 || $i==12)
+                            
+                            if(in_array($i,$desktops_with_1_drive)) {
+                            break;
+                            }
                         } //End of for($j=1;$j<=3;$j++), for 2 disks on each sorinX machines
 
                         #Grabbing the uptime & df -h of each desktop
